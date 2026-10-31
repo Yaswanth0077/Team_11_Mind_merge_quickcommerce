@@ -1,0 +1,335 @@
+{
+  "metadata": {
+    "model_version": "1.0.0",
+    "selected_model": "Gradient Boosting",
+    "trained_at_utc": "2026-10-31T09:27:07.511481+00:00",
+    "target_column": "Time_taken(min)",
+    "target_unit": "minutes",
+    "sla_threshold_minutes": 30,
+    "sla_status": "provisional",
+    "feature_columns": [
+      "delivery_distance_km",
+      "order_hour",
+      "order_day",
+      "day_of_week",
+      "is_weekend",
+      "is_peak_hour",
+      "distance_band",
+      "City",
+      "Type_of_order"
+    ],
+    "transformed_feature_names": [
+      "delivery_distance_km",
+      "order_hour",
+      "order_day",
+      "day_of_week",
+      "is_weekend",
+      "is_peak_hour",
+      "missingindicator_delivery_distance_km",
+      "missingindicator_order_hour",
+      "missingindicator_is_peak_hour",
+      "distance_band_(Missing)",
+      "distance_band_0-3 km",
+      "distance_band_12+ km",
+      "distance_band_3-7 km",
+      "distance_band_7-12 km",
+      "City_(Missing)",
+      "City_Metropolitian",
+      "City_Semi-Urban",
+      "City_Urban",
+      "Type_of_order_Buffet",
+      "Type_of_order_Drinks",
+      "Type_of_order_Meal",
+      "Type_of_order_Snack"
+    ],
+    "feature_availability_policy": {
+      "delivery_distance_km": "Included only when store and customer coordinates are available at order placement; invalid regional coordinate pairs are missing.",
+      "order_hour": "Included when the order time is available at order placement.",
+      "order_day": "Included: derived from the order date.",
+      "day_of_week": "Included: derived from the order date.",
+      "is_weekend": "Included: derived from the order date.",
+      "is_peak_hour": "Included: configured time-window heuristic derived from order time.",
+      "distance_band": "Included: derived from validated store-to-customer distance.",
+      "City": "Included: destination city is part of order information.",
+      "Type_of_order": "Included: order category is known from the submitted order.",
+      "weather_normalized": "Excluded: dataset does not establish that weather is available at placement.",
+      "traffic_normalized": "Excluded: dataset does not establish that traffic is available at placement.",
+      "Festival": "Excluded: dataset does not establish schedule availability at placement.",
+      "Delivery_person_ID": "Excluded: rider assignment timing is unknown.",
+      "Delivery_person_Age": "Excluded: rider assignment timing is unknown.",
+      "Delivery_person_Ratings": "Excluded: rating availability/assignment timing is unknown.",
+      "Vehicle_condition": "Excluded: vehicle assignment timing is unknown.",
+      "Type_of_vehicle": "Excluded: vehicle assignment timing is unknown.",
+      "multiple_deliveries": "Excluded: assignment/load timing is unknown.",
+      "ID": "Excluded: identifier, not a predictor.",
+      "Time_Order_picked": "Excluded: observed after order placement.",
+      "Time_taken(min)": "Excluded from predictors: regression target.",
+      "is_late_order": "Excluded: derived from the delivery-time target."
+    },
+    "excluded_feature_policy": {
+      "weather_normalized": "Excluded: dataset does not establish that weather is available at placement.",
+      "traffic_normalized": "Excluded: dataset does not establish that traffic is available at placement.",
+      "Festival": "Excluded: dataset does not establish schedule availability at placement.",
+      "Delivery_person_ID": "Excluded: rider assignment timing is unknown.",
+      "Delivery_person_Age": "Excluded: rider assignment timing is unknown.",
+      "Delivery_person_Ratings": "Excluded: rating availability/assignment timing is unknown.",
+      "Vehicle_condition": "Excluded: vehicle assignment timing is unknown.",
+      "Type_of_vehicle": "Excluded: vehicle assignment timing is unknown.",
+      "multiple_deliveries": "Excluded: assignment/load timing is unknown.",
+      "ID": "Excluded: identifier, not a predictor.",
+      "Time_Order_picked": "Excluded: observed after order placement.",
+      "Time_taken(min)": "Excluded from predictors: regression target.",
+      "is_late_order": "Excluded: derived from the delivery-time target."
+    },
+    "training_configuration": {
+      "random_seed": 42,
+      "random_test_fraction": 0.2,
+      "cv_folds": 3,
+      "cv_scoring": "negative mean absolute error",
+      "search_iterations_per_model": 3,
+      "temporal_validation_fraction_of_training_dates": 0.2,
+      "temporal_validation_start_date": "2022-03-29",
+      "temporal_validation_skip_reason": null,
+      "test_rows": 9119,
+      "training_rows": 36474,
+      "development_rows": 28920,
+      "temporal_validation_rows": 7554,
+      "input_rows": 45593,
+      "valid_target_rows": 45593,
+      "excluded_invalid_target_rows": 0,
+      "selection_criterion": "Lowest training-only cross-validated MAE; chronological validation and held-out test metrics are reported separately.",
+      "test_set_used_for_tuning": false,
+      "preprocessing_fit_scope": "Each cross-validation fold fits preprocessing on that fold's training rows; final inference preprocessing is refit on the full random training split."
+    },
+    "dataset": {
+      "processed_path": "E:\\Manthan_calibo\\Quick_Commerce\\data\\processed\\cleaned_orders.csv",
+      "processed_sha256": "cb005e4fba0c39ccc497c32681932beb84b3f63caa3ac225c679066f5b2a9497"
+    },
+    "package_versions": {
+      "scikit-learn": "1.9.0",
+      "xgboost": "3.4.1",
+      "joblib": "1.5.3",
+      "pandas": "3.0.5",
+      "numpy": "2.5.2"
+    }
+  },
+  "baseline_test_metrics": {
+    "mae_minutes": 7.579004587782955,
+    "rmse_minutes": 9.363725943211962,
+    "r2": -1.3992208637070291e-05,
+    "median_absolute_error_minutes": 6.698387892745519
+  },
+  "selected_model_test_metrics": {
+    "mae_minutes": 6.405533316611509,
+    "rmse_minutes": 7.983590255211966,
+    "r2": 0.273048952211821,
+    "median_absolute_error_minutes": 5.488555014821738
+  },
+  "selected_model_mae_improvement_minutes": 1.1734712711714463,
+  "selected_model_mae_improvement_percent": 15.483184600033546,
+  "selected_model_residual_summary": {
+    "mean_minutes": -0.01237806316740464,
+    "median_minutes": -0.18194597288761472,
+    "standard_deviation_minutes": 7.984018439807629,
+    "p95_absolute_minutes": 15.539824011927882
+  },
+  "model_comparison": [
+    {
+      "model": "Mean Baseline",
+      "cv_mae_minutes": 7.585194591748305,
+      "cv_mae_standard_deviation_minutes": 0.10277532452647607,
+      "best_parameters": {},
+      "test_metrics": {
+        "mae_minutes": 7.579004587782955,
+        "rmse_minutes": 9.363725943211962,
+        "r2": -1.3992208637070291e-05,
+        "median_absolute_error_minutes": 6.698387892745519
+      },
+      "temporal_validation_metrics": {
+        "mae_minutes": 7.631512876766305,
+        "rmse_minutes": 9.478643062574058,
+        "r2": -0.00041021569064469965,
+        "median_absolute_error_minutes": 6.738139695712309
+      }
+    },
+    {
+      "model": "Linear Regression",
+      "cv_mae_minutes": 6.557943153813149,
+      "cv_mae_standard_deviation_minutes": 0.0790646962447722,
+      "best_parameters": {
+        "model__fit_intercept": true
+      },
+      "test_metrics": {
+        "mae_minutes": 6.630747045618221,
+        "rmse_minutes": 8.259864915685974,
+        "r2": 0.22186566719122824,
+        "median_absolute_error_minutes": 5.663120230867925
+      },
+      "temporal_validation_metrics": {
+        "mae_minutes": 6.622220900251028,
+        "rmse_minutes": 8.26293991886207,
+        "r2": 0.2397525553095844,
+        "median_absolute_error_minutes": 5.65015485992226
+      }
+    },
+    {
+      "model": "Random Forest",
+      "cv_mae_minutes": 6.784271351786107,
+      "cv_mae_standard_deviation_minutes": 0.04917401065152922,
+      "best_parameters": {
+        "model__n_estimators": 160,
+        "model__min_samples_leaf": 1,
+        "model__max_features": 1.0,
+        "model__max_depth": null
+      },
+      "test_metrics": {
+        "mae_minutes": 6.802948923833316,
+        "rmse_minutes": 8.531579957326171,
+        "r2": 0.16982888455541567,
+        "median_absolute_error_minutes": 5.706250000000001
+      },
+      "temporal_validation_metrics": {
+        "mae_minutes": 6.727788980017,
+        "rmse_minutes": 8.48081128568551,
+        "r2": 0.19913266938904317,
+        "median_absolute_error_minutes": 5.675000000000001
+      }
+    },
+    {
+      "model": "Gradient Boosting",
+      "cv_mae_minutes": 6.3507850196063345,
+      "cv_mae_standard_deviation_minutes": 0.07862316580123328,
+      "best_parameters": {
+        "model__n_estimators": 160,
+        "model__max_depth": 2,
+        "model__learning_rate": 0.1
+      },
+      "test_metrics": {
+        "mae_minutes": 6.405533316611509,
+        "rmse_minutes": 7.983590255211966,
+        "r2": 0.273048952211821,
+        "median_absolute_error_minutes": 5.488555014821738
+      },
+      "temporal_validation_metrics": {
+        "mae_minutes": 6.403958235612389,
+        "rmse_minutes": 8.002744627569244,
+        "r2": 0.28687822745961733,
+        "median_absolute_error_minutes": 5.386871137388788
+      }
+    },
+    {
+      "model": "XGBoost",
+      "cv_mae_minutes": 6.3582427605553775,
+      "cv_mae_standard_deviation_minutes": 0.07281784760441486,
+      "best_parameters": {
+        "model__subsample": 1.0,
+        "model__n_estimators": 100,
+        "model__max_depth": 5,
+        "model__learning_rate": 0.05
+      },
+      "test_metrics": {
+        "mae_minutes": 6.403995498647187,
+        "rmse_minutes": 7.9831897118093735,
+        "r2": 0.2731218938665485,
+        "median_absolute_error_minutes": 5.446254730224609
+      },
+      "temporal_validation_metrics": {
+        "mae_minutes": 6.413641088817497,
+        "rmse_minutes": 8.009887508745463,
+        "r2": 0.28560466006661855,
+        "median_absolute_error_minutes": 5.3899126052856445
+      }
+    }
+  ],
+  "error_by_delivery_range": [
+    {
+      "delivery_range": "10\u201319",
+      "order_count": 2456,
+      "mae_minutes": 8.100151638373616,
+      "rmse_minutes": 9.345041683755232
+    },
+    {
+      "delivery_range": "20\u201329",
+      "order_count": 3725,
+      "mae_minutes": 3.967972457634094,
+      "rmse_minutes": 4.962801693511485
+    },
+    {
+      "delivery_range": "30\u201339",
+      "order_count": 2040,
+      "mae_minutes": 5.897756970530881,
+      "rmse_minutes": 6.991195117552304
+    },
+    {
+      "delivery_range": "40+",
+      "order_count": 898,
+      "mae_minutes": 13.035594950740252,
+      "rmse_minutes": 13.971375494910065
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "is_peak_hour",
+      "mae_increase_minutes": 0.6650647302833322,
+      "standard_deviation_minutes": 0.03189897540672549
+    },
+    {
+      "feature": "delivery_distance_km",
+      "mae_increase_minutes": 0.5417577283527256,
+      "standard_deviation_minutes": 0.016414643903980366
+    },
+    {
+      "feature": "City",
+      "mae_increase_minutes": 0.29352915730634993,
+      "standard_deviation_minutes": 0.003610478763567653
+    },
+    {
+      "feature": "order_hour",
+      "mae_increase_minutes": 0.1971336233547539,
+      "standard_deviation_minutes": 0.01640041016548679
+    },
+    {
+      "feature": "distance_band",
+      "mae_increase_minutes": 0.023335866977585756,
+      "standard_deviation_minutes": 0.002379824979118152
+    },
+    {
+      "feature": "order_day",
+      "mae_increase_minutes": 0.003568608332239561,
+      "standard_deviation_minutes": 0.00032403725232531657
+    },
+    {
+      "feature": "Type_of_order",
+      "mae_increase_minutes": 0.0002866765213020983,
+      "standard_deviation_minutes": 0.00015208248615502577
+    },
+    {
+      "feature": "day_of_week",
+      "mae_increase_minutes": 0.00023966823820487093,
+      "standard_deviation_minutes": 0.0002178701445244035
+    },
+    {
+      "feature": "is_weekend",
+      "mae_increase_minutes": 0.0,
+      "standard_deviation_minutes": 0.0
+    }
+  ],
+  "temporal_baseline_metrics": {
+    "mae_minutes": 7.631512876766305,
+    "rmse_minutes": 9.478643062574058,
+    "r2": -0.00041021569064469965,
+    "median_absolute_error_minutes": 6.738139695712309
+  },
+  "temporal_selected_model_metrics": {
+    "mae_minutes": 6.403958235612389,
+    "rmse_minutes": 8.002744627569244,
+    "r2": 0.28687822745961733,
+    "median_absolute_error_minutes": 5.386871137388788
+  },
+  "artifacts": {
+    "model": "E:\\Manthan_calibo\\Quick_Commerce\\artifacts\\models\\delivery_time_regressor.joblib",
+    "test_predictions": "E:\\Manthan_calibo\\Quick_Commerce\\artifacts\\metrics\\regression_test_predictions.csv",
+    "feature_importance": "E:\\Manthan_calibo\\Quick_Commerce\\artifacts\\metrics\\regression_feature_importance.csv"
+  },
+  "interpretation": "Permutation importance measures the change in held-out MAE when a feature is shuffled. It is an association with model performance, not a causal effect. The dataset does not confirm real-time feature availability."
+}

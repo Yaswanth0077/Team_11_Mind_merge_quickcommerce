@@ -1,0 +1,1024 @@
+{
+  "dataset_overview": {
+    "source_path": "E:\\Manthan_calibo\\Quick_Commerce\\data\\raw\\train.csv",
+    "source_sha256": "d293b6fc7157aef30fb34301216a3432ec895d407ce2ea9edddf942b416cdde1",
+    "rows": 45593,
+    "columns": 20,
+    "column_names": [
+      "ID",
+      "Delivery_person_ID",
+      "Delivery_person_Age",
+      "Delivery_person_Ratings",
+      "Restaurant_latitude",
+      "Restaurant_longitude",
+      "Delivery_location_latitude",
+      "Delivery_location_longitude",
+      "Order_Date",
+      "Time_Orderd",
+      "Time_Order_picked",
+      "Weatherconditions",
+      "Road_traffic_density",
+      "Vehicle_condition",
+      "Type_of_order",
+      "Type_of_vehicle",
+      "multiple_deliveries",
+      "Festival",
+      "City",
+      "Time_taken(min)"
+    ],
+    "loaded_dataframe_memory_bytes": 14109430,
+    "column_profiles": [
+      {
+        "column": "ID",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 45593,
+        "memory_usage_bytes": 681423
+      },
+      {
+        "column": "Delivery_person_ID",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 1320,
+        "memory_usage_bytes": 1035433
+      },
+      {
+        "column": "Delivery_person_Age",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "Int64",
+        "unique_values_including_missing": 23,
+        "memory_usage_bytes": 459638
+      },
+      {
+        "column": "Delivery_person_Ratings",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "Float64",
+        "unique_values_including_missing": 29,
+        "memory_usage_bytes": 493091
+      },
+      {
+        "column": "Restaurant_latitude",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "float64",
+        "cleaned_dtype": "Float64",
+        "unique_values_including_missing": 658,
+        "memory_usage_bytes": 745518
+      },
+      {
+        "column": "Restaurant_longitude",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "float64",
+        "cleaned_dtype": "Float64",
+        "unique_values_including_missing": 519,
+        "memory_usage_bytes": 746195
+      },
+      {
+        "column": "Delivery_location_latitude",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "float64",
+        "cleaned_dtype": "Float64",
+        "unique_values_including_missing": 4373,
+        "memory_usage_bytes": 751022
+      },
+      {
+        "column": "Delivery_location_longitude",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "float64",
+        "cleaned_dtype": "Float64",
+        "unique_values_including_missing": 4373,
+        "memory_usage_bytes": 751762
+      },
+      {
+        "column": "Order_Date",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 44,
+        "memory_usage_bytes": 820674
+      },
+      {
+        "column": "Time_Orderd",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 177,
+        "memory_usage_bytes": 722564
+      },
+      {
+        "column": "Time_Order_picked",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 193,
+        "memory_usage_bytes": 729488
+      },
+      {
+        "column": "Weatherconditions",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 7,
+        "memory_usage_bytes": 1130289
+      },
+      {
+        "column": "Road_traffic_density",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 5,
+        "memory_usage_bytes": 584382
+      },
+      {
+        "column": "Vehicle_condition",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "int64",
+        "cleaned_dtype": "Int64",
+        "unique_values_including_missing": 4,
+        "memory_usage_bytes": 410337
+      },
+      {
+        "column": "Type_of_order",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 4,
+        "memory_usage_bytes": 649446
+      },
+      {
+        "column": "Type_of_vehicle",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 4,
+        "memory_usage_bytes": 843119
+      },
+      {
+        "column": "multiple_deliveries",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "Int64",
+        "unique_values_including_missing": 5,
+        "memory_usage_bytes": 413316
+      },
+      {
+        "column": "Festival",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 3,
+        "memory_usage_bytes": 502647
+      },
+      {
+        "column": "City",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "string",
+        "unique_values_including_missing": 4,
+        "memory_usage_bytes": 909466
+      },
+      {
+        "column": "Time_taken(min)",
+        "raw_preservation_dtype": "string",
+        "inferred_csv_dtype": "str",
+        "cleaned_dtype": "Int64",
+        "unique_values_including_missing": 45,
+        "memory_usage_bytes": 729488
+      }
+    ],
+    "raw_preservation_dtype_summary": {
+      "ID": "string",
+      "Delivery_person_ID": "string",
+      "Delivery_person_Age": "string",
+      "Delivery_person_Ratings": "string",
+      "Restaurant_latitude": "string",
+      "Restaurant_longitude": "string",
+      "Delivery_location_latitude": "string",
+      "Delivery_location_longitude": "string",
+      "Order_Date": "string",
+      "Time_Orderd": "string",
+      "Time_Order_picked": "string",
+      "Weatherconditions": "string",
+      "Road_traffic_density": "string",
+      "Vehicle_condition": "string",
+      "Type_of_order": "string",
+      "Type_of_vehicle": "string",
+      "multiple_deliveries": "string",
+      "Festival": "string",
+      "City": "string",
+      "Time_taken(min)": "string"
+    },
+    "inferred_csv_dtype_summary": {
+      "ID": "str",
+      "Delivery_person_ID": "str",
+      "Delivery_person_Age": "str",
+      "Delivery_person_Ratings": "str",
+      "Restaurant_latitude": "float64",
+      "Restaurant_longitude": "float64",
+      "Delivery_location_latitude": "float64",
+      "Delivery_location_longitude": "float64",
+      "Order_Date": "str",
+      "Time_Orderd": "str",
+      "Time_Order_picked": "str",
+      "Weatherconditions": "str",
+      "Road_traffic_density": "str",
+      "Vehicle_condition": "int64",
+      "Type_of_order": "str",
+      "Type_of_vehicle": "str",
+      "multiple_deliveries": "str",
+      "Festival": "str",
+      "City": "str",
+      "Time_taken(min)": "str"
+    },
+    "cleaned_dtype_summary": {
+      "ID": "string",
+      "Delivery_person_ID": "string",
+      "Delivery_person_Age": "Int64",
+      "Delivery_person_Ratings": "Float64",
+      "Restaurant_latitude": "Float64",
+      "Restaurant_longitude": "Float64",
+      "Delivery_location_latitude": "Float64",
+      "Delivery_location_longitude": "Float64",
+      "Order_Date": "string",
+      "Time_Orderd": "string",
+      "Time_Order_picked": "string",
+      "Weatherconditions": "string",
+      "Road_traffic_density": "string",
+      "Vehicle_condition": "Int64",
+      "Type_of_order": "string",
+      "Type_of_vehicle": "string",
+      "multiple_deliveries": "Int64",
+      "Festival": "string",
+      "City": "string",
+      "Time_taken(min)": "Int64"
+    }
+  },
+  "missing_values": [
+    {
+      "column": "ID",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Delivery_person_ID",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Delivery_person_Age",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 1854,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 1854,
+      "missing_percentage": 4.0664
+    },
+    {
+      "column": "Delivery_person_Ratings",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 1908,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 1908,
+      "missing_percentage": 4.1849
+    },
+    {
+      "column": "Restaurant_latitude",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Restaurant_longitude",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Delivery_location_latitude",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Delivery_location_longitude",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Order_Date",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Time_Orderd",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 1731,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 1731,
+      "missing_percentage": 3.7966
+    },
+    {
+      "column": "Time_Order_picked",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Weatherconditions",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 616,
+      "normalized_missing_values": 616,
+      "missing_percentage": 1.3511
+    },
+    {
+      "column": "Road_traffic_density",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 601,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 601,
+      "missing_percentage": 1.3182
+    },
+    {
+      "column": "Vehicle_condition",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Type_of_order",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "Type_of_vehicle",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    },
+    {
+      "column": "multiple_deliveries",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 993,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 993,
+      "missing_percentage": 2.178
+    },
+    {
+      "column": "Festival",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 228,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 228,
+      "missing_percentage": 0.5001
+    },
+    {
+      "column": "City",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 1200,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 1200,
+      "missing_percentage": 2.632
+    },
+    {
+      "column": "Time_taken(min)",
+      "actual_null_values": 0,
+      "empty_strings": 0,
+      "whitespace_only_values": 0,
+      "string_missing_tokens": 0,
+      "placeholder_missing_tokens": 0,
+      "normalized_missing_values": 0,
+      "missing_percentage": 0.0
+    }
+  ],
+  "duplicate_analysis": {
+    "duplicate_full_rows": 0,
+    "rows_involved_in_duplicate_full_rows": 0,
+    "duplicate_order_id_rows_after_first": 0,
+    "rows_involved_in_duplicate_order_ids": 0,
+    "duplicate_order_id_values": 0
+  },
+  "numeric_validation": {
+    "rider_age": {
+      "count": 43739,
+      "minimum": 15.0,
+      "maximum": 50.0,
+      "percentiles": {
+        "p01": 20.0,
+        "p25": 25.0,
+        "p50": 30.0,
+        "p75": 35.0,
+        "p95": 39.0,
+        "p99": 39.0
+      },
+      "review_minimum_inclusive": 18,
+      "suspicious_count": 38
+    },
+    "rider_rating": {
+      "count": 43685,
+      "minimum": 1.0,
+      "maximum": 6.0,
+      "percentiles": {
+        "p01": 3.5,
+        "p25": 4.5,
+        "p50": 4.7,
+        "p75": 4.9,
+        "p95": 5.0,
+        "p99": 5.0
+      },
+      "valid_scale_inclusive": [
+        1.0,
+        5.0
+      ],
+      "out_of_range_count": 53
+    },
+    "multiple_deliveries": {
+      "count": 44600,
+      "minimum": 0.0,
+      "maximum": 3.0,
+      "percentiles": {
+        "p01": 0.0,
+        "p25": 0.0,
+        "p50": 1.0,
+        "p75": 1.0,
+        "p95": 2.0,
+        "p99": 2.0
+      },
+      "observed_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_negative_or_noninteger_count": 0
+    },
+    "vehicle_condition": {
+      "count": 45593,
+      "minimum": 0.0,
+      "maximum": 3.0,
+      "percentiles": {
+        "p01": 0.0,
+        "p25": 0.0,
+        "p50": 1.0,
+        "p75": 2.0,
+        "p95": 2.0,
+        "p99": 3.0
+      },
+      "observed_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_negative_or_noninteger_count": 0,
+      "note": "The dataset does not define the meaning or valid scale; values are reported without imposing one."
+    },
+    "delivery_time_minutes": {
+      "count": 45593,
+      "minimum": 10.0,
+      "maximum": 54.0,
+      "percentiles": {
+        "p01": 10.0,
+        "p25": 19.0,
+        "p50": 26.0,
+        "p75": 32.0,
+        "p95": 44.0,
+        "p99": 49.0
+      },
+      "invalid_nonpositive_or_noninteger_count": 0
+    }
+  },
+  "coordinate_validation": {
+    "global_coordinate_range": {
+      "latitude": [
+        -90,
+        90
+      ],
+      "longitude": [
+        -180,
+        180
+      ],
+      "invalid_pair_count": 0
+    },
+    "expected_region_envelope": {
+      "latitude": [
+        6.0,
+        38.0
+      ],
+      "longitude": [
+        68.0,
+        98.0
+      ],
+      "region_valid_pair_count": 41522,
+      "geographically_implausible_pair_count": 4071,
+      "outside_region_nonzero_pair_count": 431
+    },
+    "coordinates_by_column": {
+      "store_latitude": {
+        "zero_count": 3640,
+        "negative_count": 431,
+        "outside_global_range_count": 0,
+        "minimum": -30.905562,
+        "maximum": 30.914057
+      },
+      "store_longitude": {
+        "zero_count": 3640,
+        "negative_count": 162,
+        "outside_global_range_count": 0,
+        "minimum": -88.366217,
+        "maximum": 88.433452
+      },
+      "customer_latitude": {
+        "zero_count": 0,
+        "negative_count": 0,
+        "outside_global_range_count": 0,
+        "minimum": 0.01,
+        "maximum": 31.054057
+      },
+      "customer_longitude": {
+        "zero_count": 0,
+        "negative_count": 0,
+        "outside_global_range_count": 0,
+        "minimum": 0.01,
+        "maximum": 88.563452
+      }
+    },
+    "rows_with_any_negative_coordinate": 431,
+    "negative_coordinate_cells": 593,
+    "zero_coordinate_pair_count": 3640,
+    "zero_store_coordinate_pair_count": 3640,
+    "zero_customer_coordinate_pair_count": 0,
+    "distance_km": {
+      "count": 41522,
+      "minimum": 1.4650674052309467,
+      "maximum": 20.969489380087342,
+      "percentiles": {
+        "p01": 1.4901739564930154,
+        "p25": 4.6576549370601725,
+        "p50": 9.193021332844554,
+        "p75": 13.68092007746041,
+        "p95": 19.9172484157288,
+        "p99": 20.83116916788356
+      },
+      "model_eligible_pair_count": 41522,
+      "not_model_eligible_pair_count": 4071,
+      "haversine_computed_pairs": 45593,
+      "over_100_km_count": 431,
+      "iqr_outliers": 0,
+      "percentile_outliers": 817,
+      "outlier_statistics": {
+        "valid_count": 41522,
+        "q1": 4.6576549370601725,
+        "q3": 13.68092007746041,
+        "iqr_lower_bound": -8.877242773540184,
+        "iqr_upper_bound": 27.215817788060768,
+        "p01": 1.4901739564930154,
+        "p99": 20.83116916788356,
+        "iqr_outlier_count": 0,
+        "percentile_outlier_count": 817
+      },
+      "review_distance_threshold_km": 100.0,
+      "distance_band_definition": "0-3, 3-7, 7-12, and 12+ km; bands are descriptive."
+    }
+  },
+  "timestamp_validation": {
+    "Order_Date": {
+      "expected_format": "%d-%m-%Y",
+      "missing_count": 0,
+      "malformed_nonmissing_count": 0,
+      "valid_count": 45593,
+      "parsed_minimum": "2022-02-11 00:00:00",
+      "parsed_maximum": "2022-04-06 00:00:00"
+    },
+    "Time_Orderd": {
+      "expected_format": "%H:%M:%S",
+      "missing_count": 1731,
+      "malformed_nonmissing_count": 0,
+      "valid_count": 43862,
+      "parsed_minimum": "00:00:00",
+      "parsed_maximum": "23:55:00"
+    },
+    "Time_Order_picked": {
+      "expected_format": "%H:%M:%S",
+      "missing_count": 0,
+      "malformed_nonmissing_count": 0,
+      "valid_count": 45593,
+      "parsed_minimum": "00:00:00",
+      "parsed_maximum": "23:55:00"
+    }
+  },
+  "outlier_analysis": {
+    "delivery_time_minutes": {
+      "count": 45593,
+      "minimum": 10.0,
+      "maximum": 54.0,
+      "percentiles": {
+        "p01": 10.0,
+        "p25": 19.0,
+        "p50": 26.0,
+        "p75": 32.0,
+        "p95": 44.0,
+        "p99": 49.0
+      },
+      "iqr_and_percentile_flags": {
+        "valid_count": 45593,
+        "q1": 19.0,
+        "q3": 32.0,
+        "iqr_lower_bound": -0.5,
+        "iqr_upper_bound": 51.5,
+        "p01": 10.0,
+        "p99": 49.0,
+        "iqr_outlier_count": 270,
+        "percentile_outlier_count": 436
+      }
+    },
+    "distance_km": {
+      "count": 41522,
+      "minimum": 1.4650674052309467,
+      "maximum": 20.969489380087342,
+      "percentiles": {
+        "p01": 1.4901739564930154,
+        "p25": 4.6576549370601725,
+        "p50": 9.193021332844554,
+        "p75": 13.68092007746041,
+        "p95": 19.9172484157288,
+        "p99": 20.83116916788356
+      },
+      "iqr_and_percentile_flags": {
+        "valid_count": 41522,
+        "q1": 4.6576549370601725,
+        "q3": 13.68092007746041,
+        "iqr_lower_bound": -8.877242773540184,
+        "iqr_upper_bound": 27.215817788060768,
+        "p01": 1.4901739564930154,
+        "p99": 20.83116916788356,
+        "iqr_outlier_count": 0,
+        "percentile_outlier_count": 817
+      },
+      "haversine_computed_pairs": 45593,
+      "pairs_over_review_threshold": 431,
+      "review_threshold_km": 100.0
+    },
+    "flag_policy": "IQR outside Q1-1.5*IQR/Q3+1.5*IQR and values strictly below p01 or above p99 are flagged; all records are retained."
+  },
+  "cleaning_decisions": [
+    {
+      "operation": "Normalize missing values",
+      "reason": "Represent actual nulls, blank strings, known string tokens, and the weather 'conditions NaN' placeholder consistently.",
+      "affected_values": 9131,
+      "affected_records": 4225,
+      "affected_by_column": {
+        "Delivery_person_Age": 1854,
+        "Delivery_person_Ratings": 1908,
+        "Time_Orderd": 1731,
+        "Weatherconditions": 616,
+        "Road_traffic_density": 601,
+        "multiple_deliveries": 993,
+        "Festival": 228,
+        "City": 1200
+      },
+      "preexisting_null_values": 0,
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Trim categorical text and normalize weather labels",
+      "reason": "Remove inconsistent surrounding whitespace and the repeated 'conditions ' prefix without changing category meaning.",
+      "affected_values": 362099,
+      "affected_records": 45593,
+      "affected_by_column": {
+        "ID": 45593,
+        "Delivery_person_ID": 45593,
+        "Weatherconditions": 44977,
+        "Road_traffic_density": 44992,
+        "Type_of_order": 45593,
+        "Type_of_vehicle": 45593,
+        "Festival": 45365,
+        "City": 44393
+      },
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Convert numeric fields",
+      "reason": "Parse rider, coordinate, vehicle, delivery-count, and delivery-time fields as nullable numeric types; record unparseable nonmissing values.",
+      "affected_values": 405582,
+      "affected_records": 45593,
+      "converted_values_by_column": {
+        "Delivery_person_Age": 43739,
+        "Delivery_person_Ratings": 43685,
+        "Restaurant_latitude": 45593,
+        "Restaurant_longitude": 45593,
+        "Delivery_location_latitude": 45593,
+        "Delivery_location_longitude": 45593,
+        "Vehicle_condition": 45593,
+        "multiple_deliveries": 44600,
+        "Time_taken(min)": 45593
+      },
+      "unparseable_nonmissing_values_by_column": {
+        "Delivery_person_Age": 0,
+        "Delivery_person_Ratings": 0,
+        "Restaurant_latitude": 0,
+        "Restaurant_longitude": 0,
+        "Delivery_location_latitude": 0,
+        "Delivery_location_longitude": 0,
+        "Vehicle_condition": 0,
+        "multiple_deliveries": 0,
+        "Time_taken(min)": 0
+      },
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Imputation and row exclusion",
+      "reason": "No imputation or row deletion is justified in this foundation phase; preserve missing and suspicious records for review and model-specific handling.",
+      "affected_values": 0,
+      "affected_records": 0,
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Flag rider_age_suspicious",
+      "reason": "Preserve the source value while making records requiring validation explicit.",
+      "affected_values": 38,
+      "affected_records": 38,
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Flag rating_out_of_range",
+      "reason": "Preserve the source value while making records requiring validation explicit.",
+      "affected_values": 53,
+      "affected_records": 53,
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Flag multiple_deliveries_invalid",
+      "reason": "Preserve the source value while making records requiring validation explicit.",
+      "affected_values": 0,
+      "affected_records": 0,
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Flag vehicle_condition_invalid",
+      "reason": "Preserve the source value while making records requiring validation explicit.",
+      "affected_values": 0,
+      "affected_records": 0,
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Flag delivery_time_invalid",
+      "reason": "Preserve the source value while making records requiring validation explicit.",
+      "affected_values": 0,
+      "affected_records": 0,
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Flag distances over 100 km",
+      "reason": "Review unusually long coordinate pairs; the threshold is a screening heuristic and no records are removed.",
+      "affected_values": 431,
+      "affected_records": 431,
+      "records_retained": 45593,
+      "records_excluded": 0
+    },
+    {
+      "operation": "Flag IQR delivery_time outliers",
+      "reason": "Identify statistically unusual observations for review; do not automatically discard them.",
+      "affected_values": 270,
+      "affected_records": 270,
+      "records_retained": 45593,
+      "records_excluded": 0,
+      "bounds_and_counts": {
+        "valid_count": 45593,
+        "q1": 19.0,
+        "q3": 32.0,
+        "iqr_lower_bound": -0.5,
+        "iqr_upper_bound": 51.5,
+        "p01": 10.0,
+        "p99": 49.0,
+        "iqr_outlier_count": 270,
+        "percentile_outlier_count": 436
+      }
+    },
+    {
+      "operation": "Flag 1st/99th percentile delivery_time outliers",
+      "reason": "Identify statistically unusual observations for review; do not automatically discard them.",
+      "affected_values": 436,
+      "affected_records": 436,
+      "records_retained": 45593,
+      "records_excluded": 0,
+      "bounds_and_counts": {
+        "valid_count": 45593,
+        "q1": 19.0,
+        "q3": 32.0,
+        "iqr_lower_bound": -0.5,
+        "iqr_upper_bound": 51.5,
+        "p01": 10.0,
+        "p99": 49.0,
+        "iqr_outlier_count": 270,
+        "percentile_outlier_count": 436
+      }
+    },
+    {
+      "operation": "Flag IQR distance outliers",
+      "reason": "Identify statistically unusual observations for review; do not automatically discard them.",
+      "affected_values": 0,
+      "affected_records": 0,
+      "records_retained": 45593,
+      "records_excluded": 0,
+      "bounds_and_counts": {
+        "valid_count": 41522,
+        "q1": 4.6576549370601725,
+        "q3": 13.68092007746041,
+        "iqr_lower_bound": -8.877242773540184,
+        "iqr_upper_bound": 27.215817788060768,
+        "p01": 1.4901739564930154,
+        "p99": 20.83116916788356,
+        "iqr_outlier_count": 0,
+        "percentile_outlier_count": 817
+      }
+    },
+    {
+      "operation": "Flag 1st/99th percentile distance outliers",
+      "reason": "Identify statistically unusual observations for review; do not automatically discard them.",
+      "affected_values": 817,
+      "affected_records": 817,
+      "records_retained": 45593,
+      "records_excluded": 0,
+      "bounds_and_counts": {
+        "valid_count": 41522,
+        "q1": 4.6576549370601725,
+        "q3": 13.68092007746041,
+        "iqr_lower_bound": -8.877242773540184,
+        "iqr_upper_bound": 27.215817788060768,
+        "p01": 1.4901739564930154,
+        "p99": 20.83116916788356,
+        "iqr_outlier_count": 0,
+        "percentile_outlier_count": 817
+      }
+    }
+  ],
+  "records": {
+    "input_records": 45593,
+    "retained_records": 45593,
+    "excluded_records": 0,
+    "imputed_values": 0,
+    "row_deduplication_applied": false
+  },
+  "delay_lens": {
+    "target_column": "Time_taken(min)",
+    "target_unit": "minutes",
+    "sla_threshold_minutes": 30,
+    "sla_status": "provisional; challenge brief does not confirm an official threshold",
+    "late_definition": "delivery_time_minutes > SLA threshold; equality is not late",
+    "prediction_feature_columns": [
+      "delivery_distance_km",
+      "order_hour",
+      "order_day",
+      "day_of_week",
+      "is_weekend",
+      "is_peak_hour",
+      "distance_band",
+      "weather_normalized",
+      "traffic_normalized",
+      "Festival",
+      "City",
+      "Type_of_order"
+    ],
+    "excluded_columns": [
+      "ID",
+      "Delivery_person_ID",
+      "Delivery_person_Age",
+      "Delivery_person_Ratings",
+      "Vehicle_condition",
+      "Type_of_vehicle",
+      "multiple_deliveries",
+      "Time_Order_picked",
+      "Time_taken(min)",
+      "is_late_order"
+    ],
+    "conditional_availability": [
+      "Weather and traffic must be available at placement time.",
+      "Festival must be known at placement time.",
+      "Coordinates must be known at placement time and pass geographic validation."
+    ],
+    "observed_outcomes": {
+      "late_orders": 13606,
+      "not_late_orders": 31987,
+      "missing_delivery_times": 0
+    },
+    "feature_availability_policy": {
+      "delivery_distance_km": "Eligible if store/customer coordinates are known at placement and pass geographic validation.",
+      "order_hour": "Eligible if the order time is known at placement; missing/malformed values remain missing.",
+      "order_day": "Eligible: derived from the order date.",
+      "day_of_week": "Eligible: derived from the order date; Monday=0 through Sunday=6.",
+      "is_weekend": "Eligible: derived from the order date.",
+      "is_peak_hour": "Heuristic windows 11:00-13:59 and 17:00-21:59; confirm with operations.",
+      "distance_band": "Eligible: derived from validated store-to-customer distance.",
+      "weather_normalized": "Conditionally eligible: use only if weather is available at order placement.",
+      "traffic_normalized": "Conditionally eligible: use only if traffic is available at order placement.",
+      "Festival": "Conditionally eligible: use only if the schedule is known at order placement.",
+      "City": "Eligible if known from the order destination at placement.",
+      "Type_of_order": "Eligible if known from the submitted order at placement.",
+      "ID": "Excluded: order identifier, not a predictive input.",
+      "Delivery_person_ID": "Excluded: rider identifier; rider assignment timing is unknown.",
+      "Delivery_person_Age": "Excluded: rider assignment timing is unknown.",
+      "Delivery_person_Ratings": "Excluded: rider assignment timing is unknown.",
+      "Vehicle_condition": "Excluded: vehicle assignment timing is unknown.",
+      "Type_of_vehicle": "Excluded: vehicle assignment timing is unknown.",
+      "multiple_deliveries": "Excluded: assignment/load timing is unknown.",
+      "Time_Order_picked": "Excluded: known only after order placement.",
+      "Time_taken(min)": "Excluded from inputs: delivery outcome target.",
+      "is_late_order": "Excluded from inputs: label derived from the delivery outcome."
+    }
+  },
+  "cleaning_policy": {
+    "raw_preserved": true,
+    "missing_values_imputed": false,
+    "suspicious_values_deleted": false,
+    "outlier_values_deleted": false,
+    "invalid_coordinate_distances": "raw Haversine distances are retained for audit; model distance is missing unless both points fall within the broad India envelope",
+    "reason": "Defer imputation and row exclusion until business semantics and training-only preprocessing are established."
+  },
+  "limitations": [
+    "The supplied file is a food-delivery dataset used as a quick-commerce proxy, not verified grocery dark-store operations data.",
+    "The 30-minute SLA is provisional and requires organizer/business confirmation.",
+    "Rider ages below 18 are flagged for review; 18 is a screening assumption and no maximum age is imposed.",
+    "Rider tenure/experience is not present and is not fabricated.",
+    "Rider/vehicle assignment timing is unknown; rider-specific attributes and multiple-delivery load are excluded from order-placement features.",
+    "Weather, traffic, and festival fields are eligible only if known when a prediction is made.",
+    "The broad India coordinate envelope is a review heuristic; flagged records are retained and require source confirmation.",
+    "No imputation or duplicate removal has been performed."
+  ]
+}

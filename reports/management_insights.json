@@ -1,0 +1,1526 @@
+{
+  "metadata": {
+    "report_version": "1.0.0",
+    "source_dataset_sha256": "cb005e4fba0c39ccc497c32681932beb84b3f63caa3ac225c679066f5b2a9497",
+    "source_dataset_path": "E:\\Manthan_calibo\\Quick_Commerce\\data\\processed\\cleaned_orders.csv",
+    "official_challenge_pdf_found_in_project": false,
+    "official_challenge_guide_found_in_workspace": true,
+    "official_challenge_guide_filename": "QUICK_COMMERCEDELIVERY_INTELLIGENCE.txt",
+    "sla_threshold_minutes": 30,
+    "sla_status": "provisional",
+    "created_from_saved_outputs": true,
+    "models_retrained": false,
+    "recommendation_count": 3
+  },
+  "problem_statement_status": [
+    {
+      "id": "PS1",
+      "status": "Implemented",
+      "evidence": "Data audit, quality reports, and validated preprocessing are present."
+    },
+    {
+      "id": "PS2",
+      "status": "Documented against official guide",
+      "evidence": "The standalone contract and saved-model prediction demo cover the target, provisional SLA/late definition, Haversine distance, and prediction-time leakage exclusions."
+    },
+    {
+      "id": "PS3",
+      "status": "Implemented with data limitation",
+      "evidence": "Saved delay analysis and dashboard; the dataset has no verified rider experience/tenure field, so that comparison is unavailable."
+    },
+    {
+      "id": "PS4",
+      "status": "Implemented",
+      "evidence": "Saved regression model comparisons, test predictions, importance, and dashboard."
+    },
+    {
+      "id": "PS5",
+      "status": "Implemented with cost limitation",
+      "evidence": "Saved classifier, validation-only threshold selection, held-out predictions, and dashboard; no measured intervention-cost ratio is available to claim a cost-optimal threshold."
+    },
+    {
+      "id": "PS6",
+      "status": "Implemented with exploratory limitations",
+      "evidence": "Saved customer-coordinate clustering, diagnostics, candidate ranking, and dashboard."
+    },
+    {
+      "id": "PS7",
+      "status": "Implemented with descriptive limitations",
+      "evidence": "Saved rider aggregation, K-Means segmentation, measured profiles, assignments, and dashboard; segment-specific support/roster/training actions are not supplied."
+    },
+    {
+      "id": "PS8",
+      "status": "Implemented",
+      "evidence": "This report, explainability evidence, exactly three management actions, and the final dashboard."
+    }
+  ],
+  "dataset": {
+    "description": "Supplied food-delivery data used as a quick-commerce proxy; not verified dark-store operations data.",
+    "rows": 45593,
+    "columns": 20,
+    "retained_rows": 45593,
+    "excluded_rows": 0,
+    "duplicate_order_id_rows_after_first": 0,
+    "valid_distance_observations": 41522,
+    "invalid_or_unavailable_distance_observations": 4071,
+    "late_orders": 13606,
+    "late_rate": 0.29842300353124385,
+    "mean_delivery_minutes": 26.29460662821047,
+    "median_delivery_minutes": 26.0,
+    "sla_status": "provisional",
+    "source_sha256": "d293b6fc7157aef30fb34301216a3432ec895d407ce2ea9edddf942b416cdde1"
+  },
+  "regression": {
+    "selected_model": "Gradient Boosting",
+    "selection_criterion": "Lowest training-only cross-validated MAE; chronological validation and held-out test metrics are reported separately.",
+    "model_comparison": [
+      {
+        "model": "Mean Baseline",
+        "cv_mae_minutes": 7.585194591748305,
+        "cv_mae_standard_deviation_minutes": 0.10277532452647607,
+        "best_parameters": {},
+        "test_metrics": {
+          "mae_minutes": 7.579004587782955,
+          "rmse_minutes": 9.363725943211962,
+          "r2": -1.3992208637070291e-05,
+          "median_absolute_error_minutes": 6.698387892745519
+        },
+        "temporal_validation_metrics": {
+          "mae_minutes": 7.631512876766305,
+          "rmse_minutes": 9.478643062574058,
+          "r2": -0.00041021569064469965,
+          "median_absolute_error_minutes": 6.738139695712309
+        }
+      },
+      {
+        "model": "Linear Regression",
+        "cv_mae_minutes": 6.557943153813149,
+        "cv_mae_standard_deviation_minutes": 0.0790646962447722,
+        "best_parameters": {
+          "model__fit_intercept": true
+        },
+        "test_metrics": {
+          "mae_minutes": 6.630747045618221,
+          "rmse_minutes": 8.259864915685974,
+          "r2": 0.22186566719122824,
+          "median_absolute_error_minutes": 5.663120230867925
+        },
+        "temporal_validation_metrics": {
+          "mae_minutes": 6.622220900251028,
+          "rmse_minutes": 8.26293991886207,
+          "r2": 0.2397525553095844,
+          "median_absolute_error_minutes": 5.65015485992226
+        }
+      },
+      {
+        "model": "Random Forest",
+        "cv_mae_minutes": 6.784271351786107,
+        "cv_mae_standard_deviation_minutes": 0.04917401065152922,
+        "best_parameters": {
+          "model__n_estimators": 160,
+          "model__min_samples_leaf": 1,
+          "model__max_features": 1.0,
+          "model__max_depth": null
+        },
+        "test_metrics": {
+          "mae_minutes": 6.802948923833316,
+          "rmse_minutes": 8.531579957326171,
+          "r2": 0.16982888455541567,
+          "median_absolute_error_minutes": 5.706250000000001
+        },
+        "temporal_validation_metrics": {
+          "mae_minutes": 6.727788980017,
+          "rmse_minutes": 8.48081128568551,
+          "r2": 0.19913266938904317,
+          "median_absolute_error_minutes": 5.675000000000001
+        }
+      },
+      {
+        "model": "Gradient Boosting",
+        "cv_mae_minutes": 6.3507850196063345,
+        "cv_mae_standard_deviation_minutes": 0.07862316580123328,
+        "best_parameters": {
+          "model__n_estimators": 160,
+          "model__max_depth": 2,
+          "model__learning_rate": 0.1
+        },
+        "test_metrics": {
+          "mae_minutes": 6.405533316611509,
+          "rmse_minutes": 7.983590255211966,
+          "r2": 0.273048952211821,
+          "median_absolute_error_minutes": 5.488555014821738
+        },
+        "temporal_validation_metrics": {
+          "mae_minutes": 6.403958235612389,
+          "rmse_minutes": 8.002744627569244,
+          "r2": 0.28687822745961733,
+          "median_absolute_error_minutes": 5.386871137388788
+        }
+      },
+      {
+        "model": "XGBoost",
+        "cv_mae_minutes": 6.3582427605553775,
+        "cv_mae_standard_deviation_minutes": 0.07281784760441486,
+        "best_parameters": {
+          "model__subsample": 1.0,
+          "model__n_estimators": 100,
+          "model__max_depth": 5,
+          "model__learning_rate": 0.05
+        },
+        "test_metrics": {
+          "mae_minutes": 6.403995498647187,
+          "rmse_minutes": 7.9831897118093735,
+          "r2": 0.2731218938665485,
+          "median_absolute_error_minutes": 5.446254730224609
+        },
+        "temporal_validation_metrics": {
+          "mae_minutes": 6.413641088817497,
+          "rmse_minutes": 8.009887508745463,
+          "r2": 0.28560466006661855,
+          "median_absolute_error_minutes": 5.3899126052856445
+        }
+      }
+    ],
+    "baseline_test_metrics": {
+      "mae_minutes": 7.579004587782955,
+      "rmse_minutes": 9.363725943211962,
+      "r2": -1.3992208637070291e-05,
+      "median_absolute_error_minutes": 6.698387892745519
+    },
+    "selected_test_metrics": {
+      "mae_minutes": 6.405533316611509,
+      "rmse_minutes": 7.983590255211966,
+      "r2": 0.273048952211821,
+      "median_absolute_error_minutes": 5.488555014821738,
+      "order_count": 9119
+    },
+    "test_metrics_recomputed_from_predictions": {
+      "order_count": 9119,
+      "mae_minutes": 6.405533316611508,
+      "rmse_minutes": 7.983590255211966,
+      "r2": 0.273048952211821
+    },
+    "mae_improvement_vs_baseline_minutes": 1.1734712711714463,
+    "mae_improvement_vs_baseline_percent": 15.483184600033546,
+    "temporal_selected_model_metrics": {
+      "mae_minutes": 6.403958235612389,
+      "rmse_minutes": 8.002744627569244,
+      "r2": 0.28687822745961733,
+      "median_absolute_error_minutes": 5.386871137388788
+    },
+    "feature_importance": [
+      {
+        "feature": "is_peak_hour",
+        "mae_increase_minutes": 0.665064730283332,
+        "standard_deviation_minutes": 0.031898975406725
+      },
+      {
+        "feature": "delivery_distance_km",
+        "mae_increase_minutes": 0.541757728352726,
+        "standard_deviation_minutes": 0.01641464390398
+      },
+      {
+        "feature": "City",
+        "mae_increase_minutes": 0.29352915730635,
+        "standard_deviation_minutes": 0.003610478763568
+      },
+      {
+        "feature": "order_hour",
+        "mae_increase_minutes": 0.197133623354754,
+        "standard_deviation_minutes": 0.016400410165487
+      },
+      {
+        "feature": "distance_band",
+        "mae_increase_minutes": 0.023335866977586,
+        "standard_deviation_minutes": 0.002379824979118
+      },
+      {
+        "feature": "order_day",
+        "mae_increase_minutes": 0.00356860833224,
+        "standard_deviation_minutes": 0.000324037252325
+      },
+      {
+        "feature": "Type_of_order",
+        "mae_increase_minutes": 0.000286676521302,
+        "standard_deviation_minutes": 0.000152082486155
+      },
+      {
+        "feature": "day_of_week",
+        "mae_increase_minutes": 0.000239668238205,
+        "standard_deviation_minutes": 0.000217870144524
+      },
+      {
+        "feature": "is_weekend",
+        "mae_increase_minutes": 0.0,
+        "standard_deviation_minutes": 0.0
+      }
+    ],
+    "interpretation": "MAE is the average absolute error in minutes. RMSE is in minutes and penalizes larger misses more strongly. R-squared describes test-set variation explained relative to a mean baseline; it is not a causal or individual-order guarantee."
+  },
+  "classification": {
+    "selected_model": "Gradient Boosting",
+    "selected_threshold": 0.15,
+    "threshold_selection": "Maximize F2 on the stratified training validation split, with precision/intervention-volume tie breaks.",
+    "test_set_used_for_tuning_or_threshold_selection": false,
+    "model_comparison": [
+      {
+        "model": "Logistic Regression",
+        "cv_average_precision": 0.5495776671858286,
+        "best_parameters": {
+          "classifier__class_weight": "balanced",
+          "classifier__C": 10.0
+        },
+        "validation_threshold": 0.15,
+        "validation_metrics": {
+          "threshold": 0.15,
+          "order_count": 7295,
+          "true_negatives": 2215,
+          "false_positives": 2903,
+          "false_negatives": 205,
+          "true_positives": 1972,
+          "flagged_orders": 4875,
+          "accuracy": 0.573954763536669,
+          "precision": 0.4045128205128205,
+          "recall": 0.9058337161231051,
+          "f1": 0.5592739648326716,
+          "f_beta": 0.7259073842302879,
+          "specificity": 0.43278624462680737,
+          "balanced_accuracy": 0.6693099803749563,
+          "roc_auc": 0.7691959871066714,
+          "pr_auc": 0.5508779121230595,
+          "brier_score": 0.17101621052896954,
+          "confusion_matrix": {
+            "labels": [
+              "On time",
+              "Late"
+            ],
+            "values": [
+              [
+                2215,
+                2903
+              ],
+              [
+                205,
+                1972
+              ]
+            ]
+          }
+        },
+        "probability_calibration": {
+          "method": "sigmoid",
+          "raw_brier_score": 0.19676007748170213,
+          "calibrated_brier_score": 0.17101621052896954,
+          "selected_brier_score": 0.17101621052896954
+        }
+      },
+      {
+        "model": "Random Forest",
+        "cv_average_precision": 0.5354421266334647,
+        "best_parameters": {
+          "classifier__n_estimators": 160,
+          "classifier__min_samples_leaf": 1,
+          "classifier__max_depth": 16,
+          "classifier__class_weight": null
+        },
+        "validation_threshold": 0.15,
+        "validation_metrics": {
+          "threshold": 0.15,
+          "order_count": 7295,
+          "true_negatives": 1895,
+          "false_positives": 3223,
+          "false_negatives": 125,
+          "true_positives": 2052,
+          "flagged_orders": 5275,
+          "accuracy": 0.5410555174777245,
+          "precision": 0.3890047393364929,
+          "recall": 0.9425815342214056,
+          "f1": 0.5507246376811594,
+          "f_beta": 0.7337481227204462,
+          "specificity": 0.3702618210238374,
+          "balanced_accuracy": 0.6564216776226215,
+          "roc_auc": 0.7726617827538355,
+          "pr_auc": 0.5495049930417335,
+          "brier_score": 0.17175808890061714,
+          "confusion_matrix": {
+            "labels": [
+              "On time",
+              "Late"
+            ],
+            "values": [
+              [
+                1895,
+                3223
+              ],
+              [
+                125,
+                2052
+              ]
+            ]
+          }
+        },
+        "probability_calibration": {
+          "method": "sigmoid",
+          "raw_brier_score": 0.17375549758070954,
+          "calibrated_brier_score": 0.17175808890061714,
+          "selected_brier_score": 0.17175808890061714
+        }
+      },
+      {
+        "model": "Gradient Boosting",
+        "cv_average_precision": 0.5710055083747918,
+        "best_parameters": {
+          "classifier__n_estimators": 160,
+          "classifier__max_depth": 2,
+          "classifier__learning_rate": 0.1
+        },
+        "validation_threshold": 0.15,
+        "validation_metrics": {
+          "threshold": 0.15,
+          "order_count": 7295,
+          "true_negatives": 2068,
+          "false_positives": 3050,
+          "false_negatives": 117,
+          "true_positives": 2060,
+          "flagged_orders": 5110,
+          "accuracy": 0.565867032213845,
+          "precision": 0.40313111545988256,
+          "recall": 0.9462563160312356,
+          "f1": 0.5653904212982023,
+          "f_beta": 0.7454045447966421,
+          "specificity": 0.40406408753419304,
+          "balanced_accuracy": 0.6751602017827143,
+          "roc_auc": 0.7931172962997468,
+          "pr_auc": 0.5778783798385321,
+          "brier_score": 0.16328541324299142,
+          "confusion_matrix": {
+            "labels": [
+              "On time",
+              "Late"
+            ],
+            "values": [
+              [
+                2068,
+                3050
+              ],
+              [
+                117,
+                2060
+              ]
+            ]
+          }
+        },
+        "probability_calibration": {
+          "method": "sigmoid",
+          "raw_brier_score": 0.16335653532096306,
+          "calibrated_brier_score": 0.16328541324299142,
+          "selected_brier_score": 0.16328541324299142
+        }
+      },
+      {
+        "model": "XGBoost",
+        "cv_average_precision": 0.5747482799332396,
+        "best_parameters": {
+          "classifier__scale_pos_weight": 2.3508268259072116,
+          "classifier__n_estimators": 100,
+          "classifier__max_depth": 5,
+          "classifier__learning_rate": 0.05
+        },
+        "validation_threshold": 0.15,
+        "validation_metrics": {
+          "threshold": 0.15,
+          "order_count": 7295,
+          "true_negatives": 2119,
+          "false_positives": 2999,
+          "false_negatives": 135,
+          "true_positives": 2042,
+          "flagged_orders": 5041,
+          "accuracy": 0.5703906785469499,
+          "precision": 0.4050783574687562,
+          "recall": 0.937988056959118,
+          "f1": 0.5658077029648102,
+          "f_beta": 0.7425994617790385,
+          "specificity": 0.41402891754591636,
+          "balanced_accuracy": 0.6760084872525172,
+          "roc_auc": 0.7933319816770699,
+          "pr_auc": 0.5774407072500265,
+          "brier_score": 0.1628940815221375,
+          "confusion_matrix": {
+            "labels": [
+              "On time",
+              "Late"
+            ],
+            "values": [
+              [
+                2119,
+                2999
+              ],
+              [
+                135,
+                2042
+              ]
+            ]
+          }
+        },
+        "probability_calibration": {
+          "method": "sigmoid",
+          "raw_brier_score": 0.1869957462776696,
+          "calibrated_brier_score": 0.1628940815221375,
+          "selected_brier_score": 0.1628940815221375
+        }
+      }
+    ],
+    "selected_validation_metrics": {
+      "threshold": 0.15,
+      "order_count": 7295,
+      "true_negatives": 2068,
+      "false_positives": 3050,
+      "false_negatives": 117,
+      "true_positives": 2060,
+      "flagged_orders": 5110,
+      "accuracy": 0.565867032213845,
+      "precision": 0.40313111545988256,
+      "recall": 0.9462563160312356,
+      "f1": 0.5653904212982023,
+      "f_beta": 0.7454045447966421,
+      "specificity": 0.40406408753419304,
+      "balanced_accuracy": 0.6751602017827143,
+      "roc_auc": 0.7931172962997468,
+      "pr_auc": 0.5778783798385321,
+      "brier_score": 0.16328541324299142,
+      "confusion_matrix": {
+        "labels": [
+          "On time",
+          "Late"
+        ],
+        "values": [
+          [
+            2068,
+            3050
+          ],
+          [
+            117,
+            2060
+          ]
+        ]
+      }
+    },
+    "validation_threshold_comparison": [
+      {
+        "threshold": 0.05,
+        "flagged_orders": 6133,
+        "true_positives": 2144,
+        "false_positives": 3989,
+        "false_negatives": 33,
+        "precision": 0.34958421653350724,
+        "recall": 0.9848415250344511,
+        "f1": 0.5160048134777376,
+        "f_beta": 0.7223232935785998,
+        "specificity": 0.22059398202422822,
+        "selection_f_beta": 0.7223232935785998
+      },
+      {
+        "threshold": 0.1,
+        "flagged_orders": 5690,
+        "true_positives": 2124,
+        "false_positives": 3566,
+        "false_negatives": 53,
+        "precision": 0.373286467486819,
+        "recall": 0.975654570509876,
+        "f1": 0.5399771196135758,
+        "f_beta": 0.7376024447839977,
+        "specificity": 0.30324345447440404,
+        "selection_f_beta": 0.7376024447839977
+      },
+      {
+        "threshold": 0.15,
+        "flagged_orders": 5110,
+        "true_positives": 2060,
+        "false_positives": 3050,
+        "false_negatives": 117,
+        "precision": 0.40313111545988256,
+        "recall": 0.9462563160312356,
+        "f1": 0.5653904212982023,
+        "f_beta": 0.7454045447966421,
+        "specificity": 0.40406408753419304,
+        "selection_f_beta": 0.7454045447966421
+      },
+      {
+        "threshold": 0.2,
+        "flagged_orders": 4520,
+        "true_positives": 1955,
+        "false_positives": 2565,
+        "false_negatives": 222,
+        "precision": 0.4325221238938053,
+        "recall": 0.8980248047772164,
+        "f1": 0.5838435120203076,
+        "f_beta": 0.738962806168733,
+        "specificity": 0.4988276670574443,
+        "selection_f_beta": 0.738962806168733
+      },
+      {
+        "threshold": 0.25,
+        "flagged_orders": 3609,
+        "true_positives": 1781,
+        "false_positives": 1828,
+        "false_negatives": 396,
+        "precision": 0.49348850096979774,
+        "recall": 0.8180983004134129,
+        "f1": 0.6156239198064293,
+        "f_beta": 0.722984492977186,
+        "specificity": 0.6428292301680344,
+        "selection_f_beta": 0.722984492977186
+      },
+      {
+        "threshold": 0.3,
+        "flagged_orders": 3285,
+        "true_positives": 1682,
+        "false_positives": 1603,
+        "false_negatives": 495,
+        "precision": 0.5120243531202435,
+        "recall": 0.7726228755167662,
+        "f1": 0.615891614793116,
+        "f_beta": 0.7012423913949805,
+        "specificity": 0.6867917155138726,
+        "selection_f_beta": 0.7012423913949805
+      },
+      {
+        "threshold": 0.35,
+        "flagged_orders": 2460,
+        "true_positives": 1374,
+        "false_positives": 1086,
+        "false_negatives": 803,
+        "precision": 0.5585365853658537,
+        "recall": 0.6311437758383096,
+        "f1": 0.5926245417295666,
+        "f_beta": 0.6151504297994269,
+        "specificity": 0.7878077373974208,
+        "selection_f_beta": 0.6151504297994269
+      },
+      {
+        "threshold": 0.4,
+        "flagged_orders": 2108,
+        "true_positives": 1231,
+        "false_positives": 877,
+        "false_negatives": 946,
+        "precision": 0.5839658444022771,
+        "recall": 0.5654570509875976,
+        "f1": 0.5745624270711785,
+        "f_beta": 0.569064349112426,
+        "specificity": 0.8286440015631106,
+        "selection_f_beta": 0.569064349112426
+      },
+      {
+        "threshold": 0.45,
+        "flagged_orders": 2015,
+        "true_positives": 1183,
+        "false_positives": 832,
+        "false_negatives": 994,
+        "precision": 0.5870967741935483,
+        "recall": 0.5434083601286174,
+        "f1": 0.5644083969465649,
+        "f_beta": 0.551618017345892,
+        "specificity": 0.8374364986322782,
+        "selection_f_beta": 0.551618017345892
+      },
+      {
+        "threshold": 0.5,
+        "flagged_orders": 1664,
+        "true_positives": 1001,
+        "false_positives": 663,
+        "false_negatives": 1176,
+        "precision": 0.6015625,
+        "recall": 0.45980707395498394,
+        "f1": 0.5212184326998177,
+        "f_beta": 0.48254917084458154,
+        "specificity": 0.8704572098475967,
+        "selection_f_beta": 0.48254917084458154
+      },
+      {
+        "threshold": 0.55,
+        "flagged_orders": 1071,
+        "true_positives": 676,
+        "false_positives": 395,
+        "false_negatives": 1501,
+        "precision": 0.6311858076563959,
+        "recall": 0.31051906293063847,
+        "f1": 0.41625615763546797,
+        "f_beta": 0.3456386133551488,
+        "specificity": 0.922821414615084,
+        "selection_f_beta": 0.3456386133551488
+      },
+      {
+        "threshold": 0.6,
+        "flagged_orders": 1035,
+        "true_positives": 656,
+        "false_positives": 379,
+        "false_negatives": 1521,
+        "precision": 0.633816425120773,
+        "recall": 0.3013321084060634,
+        "f1": 0.40846824408468246,
+        "f_beta": 0.33665195524992303,
+        "specificity": 0.9259476357952325,
+        "selection_f_beta": 0.33665195524992303
+      },
+      {
+        "threshold": 0.65,
+        "flagged_orders": 562,
+        "true_positives": 358,
+        "false_positives": 204,
+        "false_negatives": 1819,
+        "precision": 0.6370106761565836,
+        "recall": 0.16444648598989434,
+        "f1": 0.26140927345746623,
+        "f_beta": 0.1930960086299892,
+        "specificity": 0.9601406799531067,
+        "selection_f_beta": 0.1930960086299892
+      },
+      {
+        "threshold": 0.7,
+        "flagged_orders": 44,
+        "true_positives": 39,
+        "false_positives": 5,
+        "false_negatives": 2138,
+        "precision": 0.8863636363636364,
+        "recall": 0.017914561322921452,
+        "f1": 0.035119315623592974,
+        "f_beta": 0.022280621572212066,
+        "specificity": 0.9990230558812035,
+        "selection_f_beta": 0.022280621572212066
+      },
+      {
+        "threshold": 0.75,
+        "flagged_orders": 31,
+        "true_positives": 31,
+        "false_positives": 0,
+        "false_negatives": 2146,
+        "precision": 1.0,
+        "recall": 0.01423977951309141,
+        "f1": 0.028079710144927536,
+        "f_beta": 0.017736583133081588,
+        "specificity": 1.0,
+        "selection_f_beta": 0.017736583133081588
+      },
+      {
+        "threshold": 0.8,
+        "flagged_orders": 31,
+        "true_positives": 31,
+        "false_positives": 0,
+        "false_negatives": 2146,
+        "precision": 1.0,
+        "recall": 0.01423977951309141,
+        "f1": 0.028079710144927536,
+        "f_beta": 0.017736583133081588,
+        "specificity": 1.0,
+        "selection_f_beta": 0.017736583133081588
+      },
+      {
+        "threshold": 0.85,
+        "flagged_orders": 31,
+        "true_positives": 31,
+        "false_positives": 0,
+        "false_negatives": 2146,
+        "precision": 1.0,
+        "recall": 0.01423977951309141,
+        "f1": 0.028079710144927536,
+        "f_beta": 0.017736583133081588,
+        "specificity": 1.0,
+        "selection_f_beta": 0.017736583133081588
+      },
+      {
+        "threshold": 0.9,
+        "flagged_orders": 31,
+        "true_positives": 31,
+        "false_positives": 0,
+        "false_negatives": 2146,
+        "precision": 1.0,
+        "recall": 0.01423977951309141,
+        "f1": 0.028079710144927536,
+        "f_beta": 0.017736583133081588,
+        "specificity": 1.0,
+        "selection_f_beta": 0.017736583133081588
+      },
+      {
+        "threshold": 0.95,
+        "flagged_orders": 29,
+        "true_positives": 29,
+        "false_positives": 0,
+        "false_negatives": 2148,
+        "precision": 1.0,
+        "recall": 0.0133210840606339,
+        "f1": 0.02629193109700816,
+        "f_beta": 0.01659608561291061,
+        "specificity": 1.0,
+        "selection_f_beta": 0.01659608561291061
+      }
+    ],
+    "selected_test_metrics": {
+      "threshold": 0.15,
+      "order_count": 9119,
+      "true_negatives": 2431,
+      "false_positives": 3967,
+      "false_negatives": 146,
+      "true_positives": 2575,
+      "flagged_orders": 6542,
+      "flagged_share": 0.7174032240377234,
+      "precision": 0.3936105166615714,
+      "recall": 0.946343256155825,
+      "f1": 0.5559753859440786,
+      "f2": 0.7388385171582692,
+      "roc_auc": 0.7835249530730098,
+      "pr_auc": 0.5822754544626216,
+      "brier_score": 0.16498660091054504,
+      "accuracy": 0.5489637021603246
+    },
+    "test_late_share": 0.2983879811382827,
+    "feature_importance": [
+      {
+        "feature": "is_peak_hour",
+        "pr_auc_decrease": 0.10372193494614,
+        "standard_deviation": 0.003240556047197
+      },
+      {
+        "feature": "delivery_distance_km",
+        "pr_auc_decrease": 0.090206930959654,
+        "standard_deviation": 0.006985630141061
+      },
+      {
+        "feature": "City",
+        "pr_auc_decrease": 0.049459701765375,
+        "standard_deviation": 0.000963337119183
+      },
+      {
+        "feature": "order_hour",
+        "pr_auc_decrease": 0.02096972911501,
+        "standard_deviation": 0.005078664664292
+      },
+      {
+        "feature": "order_day",
+        "pr_auc_decrease": 0.003692076582805,
+        "standard_deviation": 0.001306749652987
+      },
+      {
+        "feature": "Type_of_order",
+        "pr_auc_decrease": 0.000199354810677,
+        "standard_deviation": 0.000685661688233
+      },
+      {
+        "feature": "day_of_week",
+        "pr_auc_decrease": 6.9413277914e-05,
+        "standard_deviation": 0.000426542510106
+      },
+      {
+        "feature": "is_weekend",
+        "pr_auc_decrease": 1.667530388e-06,
+        "standard_deviation": 2.703861828e-06
+      },
+      {
+        "feature": "distance_band",
+        "pr_auc_decrease": -0.002782546320565,
+        "standard_deviation": 0.001519130149611
+      }
+    ],
+    "confusion_matrix_definition": "Rows are actual [on-time, late], columns are predicted [on-time, late]. A false positive is an on-time delivery flagged late; a false negative is a late delivery not flagged."
+  },
+  "explainability": {
+    "regression_importance": [
+      {
+        "feature": "is_peak_hour",
+        "mae_increase_minutes": 0.665064730283332,
+        "standard_deviation_minutes": 0.031898975406725
+      },
+      {
+        "feature": "delivery_distance_km",
+        "mae_increase_minutes": 0.541757728352726,
+        "standard_deviation_minutes": 0.01641464390398
+      },
+      {
+        "feature": "City",
+        "mae_increase_minutes": 0.29352915730635,
+        "standard_deviation_minutes": 0.003610478763568
+      },
+      {
+        "feature": "order_hour",
+        "mae_increase_minutes": 0.197133623354754,
+        "standard_deviation_minutes": 0.016400410165487
+      },
+      {
+        "feature": "distance_band",
+        "mae_increase_minutes": 0.023335866977586,
+        "standard_deviation_minutes": 0.002379824979118
+      },
+      {
+        "feature": "order_day",
+        "mae_increase_minutes": 0.00356860833224,
+        "standard_deviation_minutes": 0.000324037252325
+      },
+      {
+        "feature": "Type_of_order",
+        "mae_increase_minutes": 0.000286676521302,
+        "standard_deviation_minutes": 0.000152082486155
+      },
+      {
+        "feature": "day_of_week",
+        "mae_increase_minutes": 0.000239668238205,
+        "standard_deviation_minutes": 0.000217870144524
+      },
+      {
+        "feature": "is_weekend",
+        "mae_increase_minutes": 0.0,
+        "standard_deviation_minutes": 0.0
+      }
+    ],
+    "classification_importance": [
+      {
+        "feature": "is_peak_hour",
+        "pr_auc_decrease": 0.10372193494614,
+        "standard_deviation": 0.003240556047197
+      },
+      {
+        "feature": "delivery_distance_km",
+        "pr_auc_decrease": 0.090206930959654,
+        "standard_deviation": 0.006985630141061
+      },
+      {
+        "feature": "City",
+        "pr_auc_decrease": 0.049459701765375,
+        "standard_deviation": 0.000963337119183
+      },
+      {
+        "feature": "order_hour",
+        "pr_auc_decrease": 0.02096972911501,
+        "standard_deviation": 0.005078664664292
+      },
+      {
+        "feature": "order_day",
+        "pr_auc_decrease": 0.003692076582805,
+        "standard_deviation": 0.001306749652987
+      },
+      {
+        "feature": "Type_of_order",
+        "pr_auc_decrease": 0.000199354810677,
+        "standard_deviation": 0.000685661688233
+      },
+      {
+        "feature": "day_of_week",
+        "pr_auc_decrease": 6.9413277914e-05,
+        "standard_deviation": 0.000426542510106
+      },
+      {
+        "feature": "is_weekend",
+        "pr_auc_decrease": 1.667530388e-06,
+        "standard_deviation": 2.703861828e-06
+      },
+      {
+        "feature": "distance_band",
+        "pr_auc_decrease": -0.002782546320565,
+        "standard_deviation": 0.001519130149611
+      }
+    ],
+    "methodology": "Uses the saved held-out permutation-importance artifacts: regression reports the increase in MAE after a feature is permuted; classification reports the decrease in average precision. These are predictive reliance measures, not causal effects. Correlated/derived features can share or obscure importance.",
+    "feature_availability_warning": "Pickup time is observed after order placement and is excluded from both models. Weather, traffic, and festival fields are retrospective context because their availability at order placement is unverified. Distance also requires validated coordinates to be available at scoring time."
+  },
+  "ps3_findings": {
+    "mean_delivery_minutes": 26.29460662821047,
+    "median_delivery_minutes": 26.0,
+    "late_rate": 0.29842300353124385,
+    "traffic": [
+      {
+        "analysis_traffic": "Low",
+        "order_count": 15477,
+        "mean_delivery_minutes": 21.266976804290238,
+        "median_delivery_minutes": 20.0,
+        "late_orders": 1218,
+        "late_rate": 0.07869742198100407,
+        "average_distance_km": 8.149169458501833
+      },
+      {
+        "analysis_traffic": "Medium",
+        "order_count": 10947,
+        "mean_delivery_minutes": 26.699643738010415,
+        "median_delivery_minutes": 27.0,
+        "late_orders": 3555,
+        "late_rate": 0.3247465058920252,
+        "average_distance_km": 11.073850422933535
+      },
+      {
+        "analysis_traffic": "High",
+        "order_count": 4425,
+        "mean_delivery_minutes": 27.24,
+        "median_delivery_minutes": 27.0,
+        "late_orders": 1485,
+        "late_rate": 0.33559322033898303,
+        "average_distance_km": 4.396548289182935
+      },
+      {
+        "analysis_traffic": "Jam",
+        "order_count": 14143,
+        "mean_delivery_minutes": 31.17662447854062,
+        "median_delivery_minutes": 31.0,
+        "late_orders": 7162,
+        "late_rate": 0.5063989252633811,
+        "average_distance_km": 12.04054916321475
+      },
+      {
+        "analysis_traffic": "(Missing)",
+        "order_count": 601,
+        "mean_delivery_minutes": 26.54242928452579,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 186,
+        "late_rate": 0.30948419301164726,
+        "average_distance_km": 9.877208635007035
+      }
+    ],
+    "distance_bands": [
+      {
+        "analysis_distance_band": "0-3 km",
+        "order_count": 4273,
+        "mean_delivery_minutes": 21.46009829159841,
+        "median_delivery_minutes": 20.0,
+        "late_orders": 430,
+        "late_rate": 0.10063187456119822,
+        "average_distance_km": 1.7058862125108092
+      },
+      {
+        "analysis_distance_band": "3-7 km",
+        "order_count": 10637,
+        "mean_delivery_minutes": 23.658174297264267,
+        "median_delivery_minutes": 24.0,
+        "late_orders": 1925,
+        "late_rate": 0.1809720785935884,
+        "average_distance_km": 4.663078021995991
+      },
+      {
+        "analysis_distance_band": "7-12 km",
+        "order_count": 11731,
+        "mean_delivery_minutes": 26.07970335009803,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 3371,
+        "late_rate": 0.28735828147642994,
+        "average_distance_km": 9.290149402680468
+      },
+      {
+        "analysis_distance_band": "12+ km",
+        "order_count": 14881,
+        "mean_delivery_minutes": 29.79490625629998,
+        "median_delivery_minutes": 29.0,
+        "late_orders": 6717,
+        "late_rate": 0.45138095558094216,
+        "average_distance_km": 15.975138641389664
+      }
+    ],
+    "weather": [
+      {
+        "analysis_weather": "(Missing)",
+        "order_count": 616,
+        "mean_delivery_minutes": 26.545454545454547,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 190,
+        "late_rate": 0.30844155844155846,
+        "average_distance_km": 9.859351749500242
+      },
+      {
+        "analysis_weather": "Cloudy",
+        "order_count": 7536,
+        "mean_delivery_minutes": 28.917330148619957,
+        "median_delivery_minutes": 28.0,
+        "late_orders": 3299,
+        "late_rate": 0.4377653927813164,
+        "average_distance_km": 9.778182081774313
+      },
+      {
+        "analysis_weather": "Fog",
+        "order_count": 7654,
+        "mean_delivery_minutes": 28.916122288999215,
+        "median_delivery_minutes": 28.0,
+        "late_orders": 3352,
+        "late_rate": 0.437940945910635,
+        "average_distance_km": 9.778879065317232
+      },
+      {
+        "analysis_weather": "Sandstorms",
+        "order_count": 7495,
+        "mean_delivery_minutes": 25.875517011340893,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 1945,
+        "late_rate": 0.25950633755837227,
+        "average_distance_km": 9.64917360414137
+      },
+      {
+        "analysis_weather": "Stormy",
+        "order_count": 7586,
+        "mean_delivery_minutes": 25.870814658581597,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 1937,
+        "late_rate": 0.2553387819667809,
+        "average_distance_km": 9.73372509834253
+      },
+      {
+        "analysis_weather": "Sunny",
+        "order_count": 7284,
+        "mean_delivery_minutes": 21.856946732564523,
+        "median_delivery_minutes": 20.0,
+        "late_orders": 912,
+        "late_rate": 0.12520593080724876,
+        "average_distance_km": 9.62759302542576
+      },
+      {
+        "analysis_weather": "Windy",
+        "order_count": 7422,
+        "mean_delivery_minutes": 26.118835893290218,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 1971,
+        "late_rate": 0.26556184316895715,
+        "average_distance_km": 9.741238676735911
+      }
+    ],
+    "interpretation": "Group differences are observational associations; they do not prove that traffic, weather, distance, or any rider characteristic caused a delay."
+  },
+  "geographic_analysis": {
+    "selected_cluster_count": 10,
+    "selected_silhouette_score": 0.7653803263852529,
+    "inertia_elbow_suggestion": 3,
+    "cluster_count_evaluation": [
+      {
+        "cluster_count": 2,
+        "inertia_km_squared": 9846048252.201866,
+        "silhouette_score": 0.5071281913109675,
+        "smallest_cluster_orders": 17013,
+        "largest_cluster_orders": 24940
+      },
+      {
+        "cluster_count": 3,
+        "inertia_km_squared": 5200551687.220165,
+        "silhouette_score": 0.5606046976646789,
+        "smallest_cluster_orders": 10158,
+        "largest_cluster_orders": 17013
+      },
+      {
+        "cluster_count": 4,
+        "inertia_km_squared": 2830073256.0678716,
+        "silhouette_score": 0.625135175152297,
+        "smallest_cluster_orders": 3832,
+        "largest_cluster_orders": 17013
+      },
+      {
+        "cluster_count": 5,
+        "inertia_km_squared": 1948085085.9277704,
+        "silhouette_score": 0.6221515799866374,
+        "smallest_cluster_orders": 3790,
+        "largest_cluster_orders": 15260
+      },
+      {
+        "cluster_count": 6,
+        "inertia_km_squared": 1390262328.553795,
+        "silhouette_score": 0.6486388222942827,
+        "smallest_cluster_orders": 3181,
+        "largest_cluster_orders": 13223
+      },
+      {
+        "cluster_count": 7,
+        "inertia_km_squared": 1083309527.4926941,
+        "silhouette_score": 0.6743645453522735,
+        "smallest_cluster_orders": 3145,
+        "largest_cluster_orders": 10078
+      },
+      {
+        "cluster_count": 8,
+        "inertia_km_squared": 813313440.0820279,
+        "silhouette_score": 0.7250873468400625,
+        "smallest_cluster_orders": 3145,
+        "largest_cluster_orders": 10078
+      },
+      {
+        "cluster_count": 9,
+        "inertia_km_squared": 580008578.6065022,
+        "silhouette_score": 0.7402052310042521,
+        "smallest_cluster_orders": 1244,
+        "largest_cluster_orders": 10078
+      },
+      {
+        "cluster_count": 10,
+        "inertia_km_squared": 419018828.4411146,
+        "silhouette_score": 0.7653803263852529,
+        "smallest_cluster_orders": 1179,
+        "largest_cluster_orders": 10078
+      }
+    ],
+    "customer_coordinate_observations": 41953,
+    "customer_coordinate_records_excluded": 3640,
+    "candidate_zone_ranking": [
+      {
+        "cluster_id": 4,
+        "order_count": 3993,
+        "observed_delivery_outcomes": 3993,
+        "mean_delivery_minutes": 26.684447783621337,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 1273,
+        "late_rate": 0.3188079138492362,
+        "average_delivery_distance_km": 10.332593601618768,
+        "unique_riders": 102,
+        "unique_customer_locations": 384,
+        "centroid_latitude": 27.002641893062858,
+        "centroid_longitude": 76.17227697896318,
+        "mean_distance_from_centroid_km": 53.66571071187249,
+        "demand_share": 0.0951779372154554,
+        "nearest_restaurant_km": 37.435418524030126,
+        "delivery_time_difference_vs_network_minutes": 0.3729086803390942,
+        "late_rate_difference_vs_network_percentage_points": 1.9449107566014479,
+        "distance_difference_vs_network_km": 0.6124646706570065,
+        "score_order_demand": 0.7,
+        "score_late_order_rate": 0.9,
+        "score_average_delivery_time": 0.9,
+        "score_geographic_concentration": 0.7,
+        "score_existing_restaurant_gap": 0.5,
+        "candidate_priority_score": 77.0,
+        "score_method": "Relative weighted percentile score; prioritization aid, not site suitability, financial return, or causal impact."
+      },
+      {
+        "cluster_id": 7,
+        "order_count": 1244,
+        "observed_delivery_outcomes": 1244,
+        "mean_delivery_minutes": 26.730707395498392,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 391,
+        "late_rate": 0.31430868167202575,
+        "average_delivery_distance_km": 10.494390055519915,
+        "unique_riders": 99,
+        "unique_customer_locations": 395,
+        "centroid_latitude": 26.07950391881029,
+        "centroid_longitude": 81.089159585209,
+        "mean_distance_from_centroid_km": 93.92803784110262,
+        "demand_share": 0.029652229876290133,
+        "nearest_restaurant_km": 83.2058934891227,
+        "delivery_time_difference_vs_network_minutes": 0.41916829221614904,
+        "late_rate_difference_vs_network_percentage_points": 1.4949875388804046,
+        "distance_difference_vs_network_km": 0.7742611245581532,
+        "score_order_demand": 0.2,
+        "score_late_order_rate": 0.8,
+        "score_average_delivery_time": 1.0,
+        "score_geographic_concentration": 0.5,
+        "score_existing_restaurant_gap": 0.9,
+        "candidate_priority_score": 61.0,
+        "score_method": "Relative weighted percentile score; prioritization aid, not site suitability, financial return, or causal impact."
+      },
+      {
+        "cluster_id": 3,
+        "order_count": 4763,
+        "observed_delivery_outcomes": 4763,
+        "mean_delivery_minutes": 26.273777031282805,
+        "median_delivery_minutes": 25.0,
+        "late_orders": 1411,
+        "late_rate": 0.29624186437119465,
+        "average_delivery_distance_km": 9.617073820509507,
+        "unique_riders": 90,
+        "unique_customer_locations": 330,
+        "centroid_latitude": 21.61022711673315,
+        "centroid_longitude": 72.97655615473441,
+        "mean_distance_from_centroid_km": 58.93901318149737,
+        "demand_share": 0.11353180940576359,
+        "nearest_restaurant_km": 50.33596982140361,
+        "delivery_time_difference_vs_network_minutes": -0.03776207199943826,
+        "late_rate_difference_vs_network_percentage_points": -0.3116941912027049,
+        "distance_difference_vs_network_km": -0.1030551104522548,
+        "score_order_demand": 0.8,
+        "score_late_order_rate": 0.5,
+        "score_average_delivery_time": 0.4,
+        "score_geographic_concentration": 0.6,
+        "score_existing_restaurant_gap": 0.6,
+        "candidate_priority_score": 60.5,
+        "score_method": "Relative weighted percentile score; prioritization aid, not site suitability, financial return, or causal impact."
+      },
+      {
+        "cluster_id": 5,
+        "order_count": 3181,
+        "observed_delivery_outcomes": 3181,
+        "mean_delivery_minutes": 26.431310908519333,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 970,
+        "late_rate": 0.3049355548569632,
+        "average_delivery_distance_km": 9.62903943454215,
+        "unique_riders": 60,
+        "unique_customer_locations": 220,
+        "centroid_latitude": 17.499220149952844,
+        "centroid_longitude": 78.47185452782143,
+        "mean_distance_from_centroid_km": 6.682641247766653,
+        "demand_share": 0.07582294472385764,
+        "nearest_restaurant_km": 5.398842055656016,
+        "delivery_time_difference_vs_network_minutes": 0.11977180523708952,
+        "late_rate_difference_vs_network_percentage_points": 0.5576748573741519,
+        "distance_difference_vs_network_km": -0.0910894964196114,
+        "score_order_demand": 0.4,
+        "score_late_order_rate": 0.7,
+        "score_average_delivery_time": 0.8,
+        "score_geographic_concentration": 0.9,
+        "score_existing_restaurant_gap": 0.1,
+        "candidate_priority_score": 57.49999999999999,
+        "score_method": "Relative weighted percentile score; prioritization aid, not site suitability, financial return, or causal impact."
+      },
+      {
+        "cluster_id": 8,
+        "order_count": 1179,
+        "observed_delivery_outcomes": 1179,
+        "mean_delivery_minutes": 26.402883799830366,
+        "median_delivery_minutes": 26.0,
+        "late_orders": 382,
+        "late_rate": 0.3240033927056828,
+        "average_delivery_distance_km": 10.118822400748574,
+        "unique_riders": 93,
+        "unique_customer_locations": 371,
+        "centroid_latitude": 30.734327651399497,
+        "centroid_longitude": 76.82329497370654,
+        "mean_distance_from_centroid_km": 108.46199220279321,
+        "demand_share": 0.028102877029056325,
+        "nearest_restaurant_km": 94.92930043771327,
+        "delivery_time_difference_vs_network_minutes": 0.0913446965481235,
+        "late_rate_difference_vs_network_percentage_points": 2.464458642246109,
+        "distance_difference_vs_network_km": 0.39869346978681186,
+        "score_order_demand": 0.1,
+        "score_late_order_rate": 1.0,
+        "score_average_delivery_time": 0.7,
+        "score_geographic_concentration": 0.19999999999999998,
+        "score_existing_restaurant_gap": 1.0,
+        "candidate_priority_score": 54.49999999999999,
+        "score_method": "Relative weighted percentile score; prioritization aid, not site suitability, financial return, or causal impact."
+      }
+    ],
+    "selection_warning": "PS6 selected K=10, which is the upper boundary of the evaluated range (maximum K=10); the silhouette result does not establish a globally optimal or stable site partition.",
+    "limitations": [
+      "The source has delivery orders, not distinct customer IDs; order count is demand proxy, not unique demanding customers.",
+      "Clusters describe customer order density, not an optimal dark-store location.",
+      "Restaurants are an imperfect proxy for existing operational coverage; dark-store footprints are not supplied.",
+      "Candidate ranking omits property availability, rent, inventory, road access, staffing, capacity, and operational feasibility.",
+      "Straight-line geographic density and delivery outcomes do not establish causal benefit from opening a site."
+    ]
+  },
+  "rider_analysis": {
+    "total_riders": 1320,
+    "segmented_riders": 720,
+    "insufficient_sample_riders": 600,
+    "minimum_deliveries": 30,
+    "selected_cluster_count": 3,
+    "selected_silhouette_score": 0.21212796573881915,
+    "segments": [
+      {
+        "segment_id": 0,
+        "rider_count": 264,
+        "mean_deliveries_per_rider": 54.95075757575758,
+        "median_deliveries_per_rider": 57.0,
+        "p10_deliveries_per_rider": 44.0,
+        "p90_deliveries_per_rider": 61.0,
+        "mean_rider_rating": 4.604068171753403,
+        "riders_with_sufficient_rating": 264,
+        "riders_with_sufficient_distance": 252,
+        "riders_with_sufficient_multiple_delivery_data": 264,
+        "rider_share": 0.36666666666666664,
+        "small_segment_flag": false,
+        "total_deliveries": 14507,
+        "mean_delivery_minutes": 27.3525884055973,
+        "median_delivery_minutes": 26.0,
+        "late_rate": 0.3480388777831392,
+        "mean_delivery_distance_km": 9.266922335683553,
+        "mean_multiple_deliveries": 0.7857545045045045,
+        "operational_description": "delivery volume higher than the eligible-rider average; average delivery time higher than the eligible-rider average; late-delivery rate higher than the eligible-rider average; delivery distance lower than the eligible-rider average; average rider rating similar to the eligible-rider average; multiple-delivery load higher than the eligible-rider average"
+      },
+      {
+        "segment_id": 1,
+        "rider_count": 213,
+        "mean_deliveries_per_rider": 58.014084507042256,
+        "median_deliveries_per_rider": 58.0,
+        "p10_deliveries_per_rider": 54.0,
+        "p90_deliveries_per_rider": 63.0,
+        "mean_rider_rating": 4.636242620888271,
+        "riders_with_sufficient_rating": 213,
+        "riders_with_sufficient_distance": 201,
+        "riders_with_sufficient_multiple_delivery_data": 213,
+        "rider_share": 0.29583333333333334,
+        "small_segment_flag": false,
+        "total_deliveries": 12357,
+        "mean_delivery_minutes": 25.814032532168003,
+        "median_delivery_minutes": 25.0,
+        "late_rate": 0.27717083434490575,
+        "mean_delivery_distance_km": 10.75532570183146,
+        "mean_multiple_deliveries": 0.7300995024875622,
+        "operational_description": "delivery volume higher than the eligible-rider average; average delivery time similar to the eligible-rider average; late-delivery rate lower than the eligible-rider average; delivery distance higher than the eligible-rider average; average rider rating similar to the eligible-rider average; multiple-delivery load similar to the eligible-rider average"
+      },
+      {
+        "segment_id": 2,
+        "rider_count": 243,
+        "mean_deliveries_per_rider": 47.27160493827161,
+        "median_deliveries_per_rider": 45.0,
+        "p10_deliveries_per_rider": 40.0,
+        "p90_deliveries_per_rider": 58.0,
+        "mean_rider_rating": 4.659049938542679,
+        "riders_with_sufficient_rating": 243,
+        "riders_with_sufficient_distance": 222,
+        "riders_with_sufficient_multiple_delivery_data": 243,
+        "rider_share": 0.3375,
+        "small_segment_flag": false,
+        "total_deliveries": 11487,
+        "mean_delivery_minutes": 25.325063114825454,
+        "median_delivery_minutes": 25.0,
+        "late_rate": 0.2522851919561243,
+        "mean_delivery_distance_km": 9.035057914133962,
+        "mean_multiple_deliveries": 0.7008357041251778,
+        "operational_description": "delivery volume lower than the eligible-rider average; average delivery time lower than the eligible-rider average; late-delivery rate lower than the eligible-rider average; delivery distance lower than the eligible-rider average; average rider rating similar to the eligible-rider average; multiple-delivery load lower than the eligible-rider average"
+      }
+    ],
+    "limitations": [
+      "The 30-completed-delivery minimum is reused from PS3 rider reporting and is a screening threshold, not a guarantee of statistical stability.",
+      "The 30-minute SLA remains provisional; late rates change if the official SLA changes.",
+      "Average ratings and assignment-related fields are retrospective observations; they do not establish rider tenure or causal effects.",
+      "Rider IDs are pseudonymous grouping keys; segment membership is not an individual performance verdict or employment recommendation.",
+      "The supplied data does not document geography or time-period representativeness, and segment patterns may vary across contexts.",
+      "Features have varying availability; median-imputed feature values do not encode missingness in K-Means, while per-rider sufficiency flags preserve the data-quality information."
+    ]
+  },
+  "cross_statement_evidence": {
+    "highest_late_rate_traffic_category": {
+      "analysis_traffic": "Jam",
+      "order_count": 14143,
+      "mean_delivery_minutes": 31.17662447854062,
+      "median_delivery_minutes": 31.0,
+      "late_orders": 7162,
+      "late_rate": 0.5063989252633811,
+      "average_distance_km": 12.04054916321475
+    },
+    "lowest_late_rate_traffic_category": {
+      "analysis_traffic": "Low",
+      "order_count": 15477,
+      "mean_delivery_minutes": 21.266976804290238,
+      "median_delivery_minutes": 20.0,
+      "late_orders": 1218,
+      "late_rate": 0.07869742198100407,
+      "average_distance_km": 8.149169458501833
+    },
+    "long_distance_band": {
+      "analysis_distance_band": "12+ km",
+      "order_count": 14881,
+      "mean_delivery_minutes": 29.79490625629998,
+      "median_delivery_minutes": 29.0,
+      "late_orders": 6717,
+      "late_rate": 0.45138095558094216,
+      "average_distance_km": 15.975138641389664
+    },
+    "highest_late_rate_rider_segment": {
+      "segment_id": 0,
+      "rider_count": 264,
+      "mean_deliveries_per_rider": 54.95075757575758,
+      "median_deliveries_per_rider": 57.0,
+      "p10_deliveries_per_rider": 44.0,
+      "p90_deliveries_per_rider": 61.0,
+      "mean_rider_rating": 4.604068171753403,
+      "riders_with_sufficient_rating": 264,
+      "riders_with_sufficient_distance": 252,
+      "riders_with_sufficient_multiple_delivery_data": 264,
+      "rider_share": 0.36666666666666664,
+      "small_segment_flag": false,
+      "total_deliveries": 14507,
+      "mean_delivery_minutes": 27.3525884055973,
+      "median_delivery_minutes": 26.0,
+      "late_rate": 0.3480388777831392,
+      "mean_delivery_distance_km": 9.266922335683553,
+      "mean_multiple_deliveries": 0.7857545045045045,
+      "operational_description": "delivery volume higher than the eligible-rider average; average delivery time higher than the eligible-rider average; late-delivery rate higher than the eligible-rider average; delivery distance lower than the eligible-rider average; average rider rating similar to the eligible-rider average; multiple-delivery load higher than the eligible-rider average"
+    },
+    "lowest_late_rate_rider_segment": {
+      "segment_id": 2,
+      "rider_count": 243,
+      "mean_deliveries_per_rider": 47.27160493827161,
+      "median_deliveries_per_rider": 45.0,
+      "p10_deliveries_per_rider": 40.0,
+      "p90_deliveries_per_rider": 58.0,
+      "mean_rider_rating": 4.659049938542679,
+      "riders_with_sufficient_rating": 243,
+      "riders_with_sufficient_distance": 222,
+      "riders_with_sufficient_multiple_delivery_data": 243,
+      "rider_share": 0.3375,
+      "small_segment_flag": false,
+      "total_deliveries": 11487,
+      "mean_delivery_minutes": 25.325063114825454,
+      "median_delivery_minutes": 25.0,
+      "late_rate": 0.2522851919561243,
+      "mean_delivery_distance_km": 9.035057914133962,
+      "mean_multiple_deliveries": 0.7008357041251778,
+      "operational_description": "delivery volume lower than the eligible-rider average; average delivery time lower than the eligible-rider average; late-delivery rate lower than the eligible-rider average; delivery distance lower than the eligible-rider average; average rider rating similar to the eligible-rider average; multiple-delivery load lower than the eligible-rider average"
+    }
+  },
+  "recommendations": [
+    {
+      "id": "REC-1",
+      "title": "Pilot human-reviewed late-order risk triage",
+      "priority": "High",
+      "evidence": "On 9,119 held-out orders, the selected classifier at its training-validation threshold of 0.15 achieved 94.6% recall and 39.4% precision. It flagged 6,542 orders, including 3,967 false positives. The observed late-order share was 29.8%.",
+      "problem": "The retrospective classifier catches many late orders, but its low precision means a large share of alerts would be unnecessary.",
+      "action": "Evaluate the locked order-placement classifier in shadow mode, then consider a controlled human-review pilot only after operations defines alert capacity and the official SLA. Keep decisions with staff; do not automatically change delivery promises, dispatch, or rider treatment.",
+      "expected_benefit": "Could help direct attention toward orders with higher estimated late risk. The dataset does not measure intervention effectiveness, staffing capacity, or savings, so no numerical benefit is claimed.",
+      "implementation": [
+        "Confirm the operational SLA and that each predictor is available at the proposed scoring time.",
+        "Use the saved model and locked 0.15 threshold for the initial offline/shadow evaluation; do not tune against the held-out test labels.",
+        "Have operations define a review workflow and alert capacity before any live pilot.",
+        "Log scores, review actions, subsequent outcomes, and model/data version for audit."
+      ],
+      "risks": [
+        "At the selected test operating point, 3,967 of 6,542 flags were false positives; observed test precision was 39.4%.",
+        "The evaluation is retrospective on a food-delivery proxy dataset; calibration and feature availability may change in a live service.",
+        "The threshold optimizes validation F2 rather than verified operational costs or staffing capacity."
+      ],
+      "monitoring_kpi": "Flagged-order share, precision, recall, false-positive and false-negative counts, review response time, and late rate among reviewed versus comparable unreviewed orders.",
+      "validation": "Start with shadow scoring. If operationally feasible, run a pre-registered controlled pilot with a suitable comparison group and confidence intervals; evaluate outcome changes and alert workload without using test labels to retune."
+    },
+    {
+      "id": "REC-2",
+      "title": "Investigate peak-period, distance, and workload processes",
+      "priority": "High",
+      "evidence": "PS3 observed a 50.6% late rate for Jam traffic (n=14,143) versus 7.9% for Low traffic (n=15,477); orders in the 12+ km band had a 45.1% late rate (n=14,881). PS4 held-out permutation importance was 0.665 minutes MAE increase for peak-hour and 0.542 for distance. PS7's segment late rates ranged from 25.2% to 34.8%; these groups are descriptive and formed partly from late-rate and volume features.",
+      "problem": "Observed delivery outcomes vary across traffic, distance, and time groups, but the dataset cannot establish which process or resource constraints cause the differences.",
+      "action": "Conduct a non-punitive operational review of peak-period and longer-distance orders, recording dispatch/load conditions and available rider workload. Use PS7 segment profiles only to frame aggregate support questions, never to rank or discipline individuals.",
+      "expected_benefit": "May identify process constraints worth testing. No causal effect, improvement size, or rider-level explanation is established by these retrospective associations.",
+      "implementation": [
+        "Confirm traffic/weather data definitions and timestamps; they were retrospective context, not model inputs.",
+        "Validate the configured peak-hour windows and compare like-for-like locations, dates, and distance bands.",
+        "Review dispatch timing, order load, and operating conditions at aggregate cohort level before selecting a specific intervention.",
+        "Keep sufficient-observation flags visible and do not infer rider tenure from age."
+      ],
+      "risks": [
+        "Traffic and weather categories may be missing, subjective, confounded, or recorded after the decision point.",
+        "PS7 uses a 30-delivery screening floor, not a guarantee of stable rider estimates; its silhouette score is modest.",
+        "The PS3 subgroup differences are not causal estimates and may not transfer to another service or time period."
+      ],
+      "monitoring_kpi": "Delivery-time median and p90, late-order rate, distance-adjusted outcomes, and workload/assignment measures by pre-defined time and operating-condition cohort.",
+      "validation": "Predefine comparable pilot and control cohorts, measure a baseline period, then use a randomized or defensible phased rollout where feasible. Report sample sizes and uncertainty and check that any aggregate differences persist."
+    },
+    {
+      "id": "REC-3",
+      "title": "Validate geographic evidence before site commitments",
+      "priority": "Medium",
+      "evidence": "The highest PS6 relative candidate score is zone 4 (score 77.0), with 3,993 orders (9.5% of clustered demand), 31.9% late, and a nearest supplied restaurant distance of 37.4 km. PS6 selected K=10, which is the upper boundary of the evaluated range (maximum K=10); the silhouette result does not establish a globally optimal or stable site partition.",
+      "problem": "The exploratory zones are derived from food-delivery customer coordinates; restaurants are only a service-coverage proxy, and the score is not a site-feasibility measure.",
+      "action": "Treat the top-ranked zone as a validation candidate for further study, not a dark-store recommendation. Reconcile source coordinates and time coverage, then assess actual candidate properties and operating feasibility before any investment decision.",
+      "expected_benefit": "Could reduce the chance of acting on a geographic artifact and focus field research on measured demand. No site benefit, savings, or commercial return can be estimated from the available data.",
+      "implementation": [
+        "Verify customer and existing-location coordinates against trusted operational records and current service boundaries.",
+        "Recompute demand using recent time windows and sensitivity checks across plausible cluster counts.",
+        "Collect candidate property availability, rent, inventory, road access, staffing, capacity, and operational-cost data.",
+        "Keep the weighted zone score labeled as an exploratory ranking, separate from a feasibility or investment score."
+      ],
+      "risks": [
+        "The selected PS6 K is at the upper end of the evaluated range, so finer partitions may score better.",
+        "The source is a food-delivery dataset, not verified dark-store operations; restaurant locations do not prove dark-store coverage.",
+        "No property, rent, road-access, inventory, or operating-cost data is available."
+      ],
+      "monitoring_kpi": "Coordinate validation rate, demand-share stability by time window and K, candidate-zone order coverage, and independently verified service-area coverage.",
+      "validation": "Reconcile a sample of locations with ground-truth records, test spatial and temporal stability on a separate period, and complete field/property feasibility checks before proposing a site."
+    }
+  ],
+  "limitations": [
+    "The official guide was reviewed from QUICK_COMMERCEDELIVERY_INTELLIGENCE.txt in the workspace root.",
+    "The 30-minute SLA remains provisional because the guide does not publish an approved threshold.",
+    "The 30-minute SLA is provisional and must be confirmed before operational use.",
+    "The food-delivery dataset is only a quick-commerce proxy and may not represent the intended operation or current conditions.",
+    "All model metrics are retrospective; performance, calibration, and feature availability may change in deployment.",
+    "The classification threshold is based on validation F2, not verified operating capacity or measured false-positive/false-negative costs.",
+    "PS6 zones and restaurant locations do not establish dark-store suitability; the selected K is at the evaluated boundary.",
+    "PS7 segments are descriptive groups and must not be used as individual rankings or employment judgments; the proposed support actions are hypotheses requiring validation.",
+    "No intervention has been tested; the report makes no quantified savings, ROI, delivery-improvement, or causal claims."
+  ]
+}

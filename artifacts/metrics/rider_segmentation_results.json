@@ -1,0 +1,226 @@
+{
+  "metadata": {
+    "model_version": "1.0.0",
+    "algorithm": "KMeans",
+    "selected_cluster_count": 3,
+    "random_seed": 42,
+    "feature_names": [
+      "log_delivery_count",
+      "mean_delivery_minutes",
+      "late_rate",
+      "mean_delivery_distance_km",
+      "mean_rider_rating",
+      "mean_multiple_deliveries"
+    ],
+    "preprocessing": "Median imputation, followed by StandardScaler; fit only on riders meeting the completed-delivery minimum. Missingness is reported separately and is not itself used as a cluster feature.",
+    "feature_policy": {
+      "log_delivery_count": "log1p of completed delivery count; included to represent volume with reduced skew.",
+      "mean_delivery_minutes": "Mean valid completed-delivery time per rider.",
+      "late_rate": "Share of valid completed deliveries strictly exceeding the configured 30-minute SLA.",
+      "mean_delivery_distance_km": "Mean valid PS3 Haversine distance; missing if fewer than the required valid observations and median-imputed without a missingness-indicator feature.",
+      "mean_rider_rating": "Mean PS3-valid 1-5 rating; missing if fewer than 5 ratings.",
+      "mean_multiple_deliveries": "Mean non-negative integer multiple-delivery field; missing if fewer than 5 valid observations.",
+      "excluded_fields": "Rider ID is a group key only; rider age is not tenure and is excluded; Type_of_vehicle is entirely missing in the supplied dataset; vehicle condition is excluded as a per-order operational attribute.",
+      "analysis_scope": "Retrospective descriptive grouping of completed deliveries; not a prospective prediction or causal analysis."
+    },
+    "minimum_deliveries_for_segmentation": 30,
+    "minimum_rating_observations": 5,
+    "silhouette_sample": {
+      "sample_size": 720,
+      "sample_strategy": "Uniform without-replacement rider sample with fixed random seed.",
+      "random_seed": 42
+    },
+    "selected_silhouette_score": 0.21212796573881915,
+    "inertia_elbow_suggestion": 3,
+    "selection_at_candidate_boundary": false,
+    "selection_method": "Selected the inertia-elbow K because its silhouette is within 0.010 of the highest stable-candidate silhouette. All segments meet the rider-count stability screen; the selected profiles were reviewed for distinct measured operational characteristics.",
+    "sla_threshold_minutes": 30,
+    "sla_status": "provisional",
+    "segment_small_sample_threshold_riders": 30,
+    "small_segments": [],
+    "processed_dataset_path": "E:\\Manthan_calibo\\Quick_Commerce\\data\\processed\\cleaned_orders.csv",
+    "processed_dataset_sha256": "cb005e4fba0c39ccc497c32681932beb84b3f63caa3ac225c679066f5b2a9497",
+    "package_versions": {
+      "scikit-learn": "1.9.0",
+      "joblib": "1.5.3",
+      "pandas": "3.0.5",
+      "numpy": "2.5.2"
+    },
+    "trained_at_utc": "2026-10-31T10:16:36.458872+00:00"
+  },
+  "data_audit": {
+    "input_order_rows": 45593,
+    "completed_delivery_rows": 45593,
+    "completed_deliveries_with_valid_rider_id": 45593,
+    "completed_deliveries_missing_or_invalid_rider_id": 0,
+    "invalid_or_missing_delivery_targets": 0,
+    "distinct_riders_with_completed_deliveries": 1320,
+    "riders_meeting_minimum_deliveries": 720,
+    "riders_flagged_insufficient_deliveries": 600,
+    "minimum_deliveries_for_segmentation": 30,
+    "minimum_rating_observations": 5,
+    "valid_delivery_distance_observations": 41522,
+    "valid_rider_rating_observations": 43632,
+    "valid_multiple_delivery_observations": 44600,
+    "feature_missing_values_among_eligible_riders": {
+      "log_delivery_count": 0,
+      "mean_delivery_minutes": 0,
+      "late_rate": 0,
+      "mean_delivery_distance_km": 45,
+      "mean_rider_rating": 0,
+      "mean_multiple_deliveries": 0
+    },
+    "delivery_count_distribution": {
+      "minimum": 5,
+      "median": 41.0,
+      "maximum": 67
+    },
+    "completed_deliveries_of_segmented_riders": 38351,
+    "completed_deliveries_of_insufficient_sample_riders": 7242
+  },
+  "cluster_count_evaluation": [
+    {
+      "cluster_count": 2,
+      "inertia": 3228.31118273808,
+      "silhouette_score": 0.21453388681279073,
+      "smallest_segment_riders": 353,
+      "largest_segment_riders": 367,
+      "small_segment_flag": false
+    },
+    {
+      "cluster_count": 3,
+      "inertia": 2719.614434020292,
+      "silhouette_score": 0.21212796573881915,
+      "smallest_segment_riders": 213,
+      "largest_segment_riders": 264,
+      "small_segment_flag": false
+    },
+    {
+      "cluster_count": 4,
+      "inertia": 2415.5381276345697,
+      "silhouette_score": 0.19882143329832785,
+      "smallest_segment_riders": 165,
+      "largest_segment_riders": 192,
+      "small_segment_flag": false
+    },
+    {
+      "cluster_count": 5,
+      "inertia": 2161.93977280943,
+      "silhouette_score": 0.21395557938743373,
+      "smallest_segment_riders": 109,
+      "largest_segment_riders": 186,
+      "small_segment_flag": false
+    },
+    {
+      "cluster_count": 6,
+      "inertia": 1980.64974363285,
+      "silhouette_score": 0.20859447545689008,
+      "smallest_segment_riders": 103,
+      "largest_segment_riders": 143,
+      "small_segment_flag": false
+    },
+    {
+      "cluster_count": 7,
+      "inertia": 1863.7340577172056,
+      "silhouette_score": 0.20596468240180274,
+      "smallest_segment_riders": 65,
+      "largest_segment_riders": 138,
+      "small_segment_flag": false
+    },
+    {
+      "cluster_count": 8,
+      "inertia": 1762.8396154483414,
+      "silhouette_score": 0.1925774773486103,
+      "smallest_segment_riders": 58,
+      "largest_segment_riders": 121,
+      "small_segment_flag": false
+    }
+  ],
+  "segments": [
+    {
+      "segment_id": 0,
+      "rider_count": 264,
+      "mean_deliveries_per_rider": 54.95075757575758,
+      "median_deliveries_per_rider": 57.0,
+      "p10_deliveries_per_rider": 44.0,
+      "p90_deliveries_per_rider": 61.0,
+      "mean_rider_rating": 4.604068171753403,
+      "riders_with_sufficient_rating": 264,
+      "riders_with_sufficient_distance": 252,
+      "riders_with_sufficient_multiple_delivery_data": 264,
+      "rider_share": 0.36666666666666664,
+      "small_segment_flag": false,
+      "total_deliveries": 14507,
+      "mean_delivery_minutes": 27.3525884055973,
+      "median_delivery_minutes": 26.0,
+      "late_rate": 0.3480388777831392,
+      "mean_delivery_distance_km": 9.266922335683553,
+      "mean_multiple_deliveries": 0.7857545045045045,
+      "operational_description": "delivery volume higher than the eligible-rider average; average delivery time higher than the eligible-rider average; late-delivery rate higher than the eligible-rider average; delivery distance lower than the eligible-rider average; average rider rating similar to the eligible-rider average; multiple-delivery load higher than the eligible-rider average"
+    },
+    {
+      "segment_id": 1,
+      "rider_count": 213,
+      "mean_deliveries_per_rider": 58.014084507042256,
+      "median_deliveries_per_rider": 58.0,
+      "p10_deliveries_per_rider": 54.0,
+      "p90_deliveries_per_rider": 63.0,
+      "mean_rider_rating": 4.636242620888271,
+      "riders_with_sufficient_rating": 213,
+      "riders_with_sufficient_distance": 201,
+      "riders_with_sufficient_multiple_delivery_data": 213,
+      "rider_share": 0.29583333333333334,
+      "small_segment_flag": false,
+      "total_deliveries": 12357,
+      "mean_delivery_minutes": 25.814032532168003,
+      "median_delivery_minutes": 25.0,
+      "late_rate": 0.27717083434490575,
+      "mean_delivery_distance_km": 10.75532570183146,
+      "mean_multiple_deliveries": 0.7300995024875622,
+      "operational_description": "delivery volume higher than the eligible-rider average; average delivery time similar to the eligible-rider average; late-delivery rate lower than the eligible-rider average; delivery distance higher than the eligible-rider average; average rider rating similar to the eligible-rider average; multiple-delivery load similar to the eligible-rider average"
+    },
+    {
+      "segment_id": 2,
+      "rider_count": 243,
+      "mean_deliveries_per_rider": 47.27160493827161,
+      "median_deliveries_per_rider": 45.0,
+      "p10_deliveries_per_rider": 40.0,
+      "p90_deliveries_per_rider": 58.0,
+      "mean_rider_rating": 4.659049938542679,
+      "riders_with_sufficient_rating": 243,
+      "riders_with_sufficient_distance": 222,
+      "riders_with_sufficient_multiple_delivery_data": 243,
+      "rider_share": 0.3375,
+      "small_segment_flag": false,
+      "total_deliveries": 11487,
+      "mean_delivery_minutes": 25.325063114825454,
+      "median_delivery_minutes": 25.0,
+      "late_rate": 0.2522851919561243,
+      "mean_delivery_distance_km": 9.035057914133962,
+      "mean_multiple_deliveries": 0.7008357041251778,
+      "operational_description": "delivery volume lower than the eligible-rider average; average delivery time lower than the eligible-rider average; late-delivery rate lower than the eligible-rider average; delivery distance lower than the eligible-rider average; average rider rating similar to the eligible-rider average; multiple-delivery load lower than the eligible-rider average"
+    }
+  ],
+  "feature_missing_values": {
+    "log_delivery_count": 0,
+    "mean_delivery_minutes": 0,
+    "late_rate": 0,
+    "mean_delivery_distance_km": 45,
+    "mean_rider_rating": 0,
+    "mean_multiple_deliveries": 0
+  },
+  "limitations": [
+    "The 30-completed-delivery minimum is reused from PS3 rider reporting and is a screening threshold, not a guarantee of statistical stability.",
+    "The 30-minute SLA remains provisional; late rates change if the official SLA changes.",
+    "Average ratings and assignment-related fields are retrospective observations; they do not establish rider tenure or causal effects.",
+    "Rider IDs are pseudonymous grouping keys; segment membership is not an individual performance verdict or employment recommendation.",
+    "The supplied data does not document geography or time-period representativeness, and segment patterns may vary across contexts.",
+    "Features have varying availability; median-imputed feature values do not encode missingness in K-Means, while per-rider sufficiency flags preserve the data-quality information."
+  ],
+  "artifacts": {
+    "model": "E:\\Manthan_calibo\\Quick_Commerce\\artifacts\\models\\rider_performance_kmeans.joblib",
+    "report": "E:\\Manthan_calibo\\Quick_Commerce\\artifacts\\metrics\\rider_segmentation_results.json",
+    "rider_assignments": "E:\\Manthan_calibo\\Quick_Commerce\\artifacts\\metrics\\rider_segment_assignments.csv",
+    "order_assignments": "E:\\Manthan_calibo\\Quick_Commerce\\artifacts\\metrics\\rider_order_assignments.csv"
+  }
+}
